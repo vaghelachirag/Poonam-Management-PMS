@@ -49,4 +49,18 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation (libs.gson)
+    implementation (libs.androidx.room.runtime)
+    implementation (libs.retrofit)
+    implementation (libs.rxjava.core)
+    implementation (libs.rxjava.android)
+    implementation (libs.rxandroid)
+
+    implementation (libs.okhttp)
+     implementation (libs.logging.interceptor)
+
+    implementation ("com.google.firebase:firebase-messaging-ktx:23.0.3")
+    implementation ("com.google.firebase:firebase-bom:29.3.1")
+    implementation ("com.google.firebase:firebase-messaging:23.0.3")
 }
