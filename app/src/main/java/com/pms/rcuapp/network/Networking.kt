@@ -1,9 +1,9 @@
-package com.squmish.rcuapp.network
+package com.pms.rcuapp.network
+
 
 import android.annotation.SuppressLint
 import android.content.Context
 import com.google.gson.GsonBuilder
-import com.pms.rcuapp.network.ApiInterface
 import com.pms.rcuapp.uttils.AppConstants
 import com.pms.rcuapp.uttils.Session
 import okhttp3.Interceptor
@@ -17,6 +17,8 @@ import org.json.JSONObject
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+
+
 
 open class Networking(private val context: Context?) {
 

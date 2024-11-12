@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="itemData"
+            type="com.pms.rcuapp.model.getMenuListResponse.GetMenuListData" />
+
+        <variable
+            name="holder"
+            type="com.pms.rcuapp.view.adapter.MenuItemViewHolder" />
+
+        <variable
+            name="viewmodel"
+            type="com.pms.rcuapp.viewmodel.DashboardViewModel" />
+    </data>
+
+    <LinearLayout
+    android:id="@+id/ll_Main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_8sdp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_Logo"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:src="@mipmap/ic_launcher"
+        android:tint="@color/black"
+        tools:ignore="MissingConstraints">
+
+    </androidx.appcompat.widget.AppCompatImageView>
+
+        <com.pms.rcuapp.widget.SmallText
+            android:id="@+id/txtMenuName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Menu Name"
+            android:textSize="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:textColor="@color/black"
+            app:layout_constraintRight_toRightOf="@+id/iv_Logo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage">
+
+        </com.pms.rcuapp.widget.SmallText>
+    </LinearLayout>
+</layout>

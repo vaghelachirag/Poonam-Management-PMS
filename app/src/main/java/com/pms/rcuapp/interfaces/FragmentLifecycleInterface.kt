@@ -1,4 +1,4 @@
-package com.squmish.rcuapp.interfaces
+package com.pms.rcuapp.interfaces
 
 interface FragmentLifecycleInterface {
     fun onPauseFragment()

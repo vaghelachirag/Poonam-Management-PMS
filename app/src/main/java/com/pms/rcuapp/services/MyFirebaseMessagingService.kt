@@ -12,8 +12,8 @@ import android.os.Build
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.squmish.rcuapp.MainActivity
-import com.squmish.rcuapp.R
+import com.pms.rcuapp.MainActivity
+import com.pms.rcuapp.R
 import com.pms.rcuapp.uttils.Session
 import com.pms.rcuapp.uttils.Session.Companion.KEY_USER_TOKEN
 

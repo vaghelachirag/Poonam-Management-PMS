@@ -37,7 +37,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.squmish.rcuapp.R
+import com.pms.rcuapp.R
 import com.pms.rcuapp.uttils.AppConstants.baseURL
 import java.io.*
 import java.text.DecimalFormat
@@ -69,6 +69,7 @@ class Utility {
 
         }
 
+        @RequiresApi(Build.VERSION_CODES.O)
         fun getCurrentDate() : String{
             var currentDate : String = "";
             val formatter =

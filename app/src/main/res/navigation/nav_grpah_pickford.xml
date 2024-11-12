@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_grpah_pickford"
+    app:startDestination="@+id/dashboardMenuFragment">
+
+
+    <fragment
+        android:id="@+id/dashboardMenuFragment"
+        android:name="com.pms.rcuapp.view.menu.DashboardMenuFragment"
+        android:label="@string/dashboard_menu_fragment_label"
+        app:popUpToInclusive="true"
+        app:destination="@id/dashboardFragment"
+        tools:layout="@layout/dashboard_menu_fragment">
+
+        <action
+            android:id="@+id/action_dashboardMenuFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/dashboardMenuFragment"
+            app:popUpToInclusive="true"/>
+
+        <action
+            android:id="@+id/action_dashboardMenuFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/dashboardMenuFragment"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.pms.rcuapp.view.menu.DashboardFragment"
+        android:label="@string/dashboard_fragment_label"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="false"
+        tools:layout="@layout/dashboard_fragment">
+
+        <action
+            android:id="@+id/action_dashboardFragment_to_dashboardMenuFragment"
+            app:destination="@id/dashboardMenuFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/dashboardFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_dashboardFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.pms.rcuapp.view.menu.WebViewFragment"
+        android:label="@string/webView_fragment_label"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/anim_slide_in_from_bottom"
+        app:popExitAnim="@anim/anim_slide_out_to_bottom"
+        app:destination="@id/fragmentbasicinformation"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true"
+        tools:layout="@layout/fragment_load_web_url">
+
+        <action
+            android:id="@+id/action_webViewFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_webViewFragment_to_dashboardMenuFragment"
+            app:destination="@id/dashboardMenuFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.pms.rcuapp.view.HomeFragment"
+        android:label="@string/home_fragment_label"
+        tools:layout="@layout/home_fragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.pms.rcuapp.view.menu.SettingFragment"
+        android:label="@string/action_settings"
+        tools:layout="@layout/setting_fragment">
+        <action
+            android:id="@+id/action_settingFragment_self"
+            app:destination="@id/settingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.pms.rcuapp.view.menu.ChangePasswordFragment"
+        android:label="@string/action_changePassword"
+        tools:layout="@layout/change_password_fragment">
+        <action
+            android:id="@+id/action_changePasswordFragment_self"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentbasicinformation"
+        android:name="com.pms.rcuapp.view.detail.FragmentBasicInformation"
+        android:label="@string/action_settings"
+        tools:layout="@layout/fragment_basic_information">
+
+        <action
+            android:id="@+id/action_fragmentbasicinformation_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_fragmentbasicinformation_to_dashboardMenuFragment"
+            app:destination="@id/dashboardMenuFragment" />
+
+    </fragment>
+
+</navigation>

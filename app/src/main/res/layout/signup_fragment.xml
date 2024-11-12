@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.pms.rcuapp.viewmodel.SignupViewModel"  />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/ll_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_180sdp"
+                android:foreground="@drawable/image_overlay"
+                android:background="@drawable/login_bg">
+
+            </ImageView>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="250sp"
+            android:layout_height="100sp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:transitionName="appLogo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/icon_splash"
+            android:visibility="visible"
+            tools:targetApi="lollipop" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintTop_toBottomOf="@+id/ll_top">
+
+            <com.pms.rcuapp.widget.HeaderText
+                android:id="@+id/tvSignupLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/btn_Signup"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.pms.rcuapp.widget.SmallText
+                android:id="@+id/tvSignupLabelContinue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="sign_in_continue"
+                android:textColor="@color/black2"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSignupLabel" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inpEmail"
+                style="@style/TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:hintTextColor="@color/main_bg"
+                app:passwordToggleEnabled="false"
+                app:layout_constraintBottom_toTopOf="@id/inpPwd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSignupLabelContinue"
+                tools:ignore="MissingConstraints">
+
+                <com.pms.rcuapp.widget.TypefaceEditText
+                    android:id="@+id/edt_EmployeeCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_size"
+                    android:background="@null"
+                    android:hint="@string/employeecode"
+                    android:text="@={viewModel.employeeCode}"
+                    android:gravity="center_vertical"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray_323232"
+                    android:textSize="@dimen/loginTextSize"
+                    app:custom_font="@string/app_font_regular"
+                    tools:ignore="SpUsage" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inpPwd"
+                style="@style/TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:hintTextColor="@color/main_bg"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@id/inpEmail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:passwordToggleEnabled="false"
+                app:layout_constraintTop_toBottomOf="@+id/inpEmail"
+                tools:ignore="MissingConstraints">
+
+                <com.pms.rcuapp.widget.TypefaceEditText
+                    android:id="@+id/edtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_size"
+                    android:background="@null"
+                    android:hint="@string/remark"
+                    android:inputType="text"
+                    android:gravity="center_vertical"
+                    android:imeOptions="actionDone"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:text="@={viewModel.remark}"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray_323232"
+                    app:custom_font="@string/app_font_regular"
+                    android:textSize="@dimen/loginTextSize"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.pms.rcuapp.widget.SmallText
+                android:id="@+id/txtRedirectToLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:onClick="@{(view) -> viewModel.redirectToLogin()}"
+                android:text="@string/alredayhaveId"
+                android:textColor="@color/black2"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/btnLogin"
+                app:layout_constraintStart_toStartOf="@id/btnLogin"
+                app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                style="@style/MaterialButtonStyle"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_50sdp"
+                android:layout_marginRight="@dimen/_50sdp"
+                android:onClick="@{(view) -> viewModel.onSignUpClicked()}"
+                android:text="@string/btn_Signup"
+                app:backgroundTint="@null"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inpPwd" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

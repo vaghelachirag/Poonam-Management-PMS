@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="personalInforamtion"
+            type="com.pms.rcuapp.viewmodel.verificationDetail.RCUVerificationViewModel"  />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.pms.rcuapp.widget.HeaderText
+            android:id="@+id/applicant_PersonalInformation_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/applicant_PersonalInformation_label"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textSize="@dimen/_12sdp">
+        </com.pms.rcuapp.widget.HeaderText>
+
+        <LinearLayout
+            android:id="@+id/ll_PersonalInforamtionTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/ll_personal_informationOne"
+                layout="@layout/ll_rcu_personal_information_one"
+                bind:personinformation1="@{personalInforamtion}"/>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputExposedDropdownMenu"
+                android:id="@+id/inspnHouseLocality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/txt_NeibourRecognised"
+                app:hintTextColor="@color/main_bg"
+                android:textColorHint="@color/main_bg"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:hint="@string/applicant_HouseLocality_label">
+
+                <com.pms.rcuapp.widget.InstantAutoComplete
+                    android:id="@+id/spnHouseLocality"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_size"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:entries="@array/addresses_array"
+                    android:focusable="false"
+                    android:textColor="@color/black"
+                    android:text="@={personalInforamtion.houseLocalityApplicant}"
+                    android:textColorHint="@color/gray_323232"
+                    android:textSize="@dimen/verificationDetailTextSize"
+                    app:custom_font="@string/app_font_regular" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputExposedDropdownMenu"
+                android:id="@+id/inspnAccommodationType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/txt_NeibourRecognised"
+                app:hintTextColor="@color/main_bg"
+                android:textColorHint="@color/main_bg"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:hint="@string/applicant_AccommodationType_label">
+
+                <com.pms.rcuapp.widget.InstantAutoComplete
+                    android:id="@+id/spnAccommodationType"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_size"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:entries="@array/addresses_array"
+                    android:focusable="false"
+                    android:text="@={personalInforamtion.accommodationApplicant}"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray_323232"
+                    android:textSize="@dimen/verificationDetailTextSize"
+                    app:custom_font="@string/app_font_regular" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_HouseSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <com.pms.rcuapp.widget.SmallText
+                    android:id="@+id/applicant_StayingAtCurrentAddress_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/applicant_HouseSize_label"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textSize="@dimen/_12sdp">
+                </com.pms.rcuapp.widget.SmallText>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inapplicant_StayingAtCurrentAddress_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        style="@style/TextInputLayout"
+                        android:textIsSelectable="true"
+                        android:inputType="none"
+                        app:hintTextColor="@color/main_bg"
+                        app:passwordToggleEnabled="false"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        tools:ignore="MissingClass,MissingConstraints">
+
+                        <com.pms.rcuapp.widget.TypefaceEditText
+                            android:id="@+id/edt_applicant_StayingAtCurrentAddress_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_size"
+                            android:hint="@string/applicant_HouseSize_label"
+                            android:imeOptions="actionNext"
+                            android:inputType="numberDecimal"
+                            android:text="@={personalInforamtion.edtHouseSize}"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray_323232"
+                            android:textSize="@dimen/verificationDetailTextSize"
+                            app:custom_font="@string/app_font_regular" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TextInputExposedDropdownMenu"
+                        android:id="@+id/inspnapplicant_HouseSize_label"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        app:hintTextColor="@color/main_bg"
+                        android:textColorHint="@color/main_bg"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:hint="Select size">
+
+                        <com.pms.rcuapp.widget.InstantAutoComplete
+                            android:id="@+id/spnapplicant_HouseSize_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_size"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusableInTouchMode="false"
+                            android:entries="@array/addresses_array"
+                            android:text="@={personalInforamtion.houseSizeUnitApplicant}"
+                            android:focusable="false"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray_323232"
+                            android:textSize="@dimen/verificationDetailTextSize"
+                            app:custom_font="@string/app_font_regular" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.pms.rcuapp.widget.SmallText
+                android:id="@+id/applicant_IsNameboardseenattheHouse_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/applicant_IsNameboardseenattheHouse_label"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp">
+            </com.pms.rcuapp.widget.SmallText>
+            <RadioGroup
+                android:id="@+id/rb_applicant_IsNameboardseenattheHouse_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onCheckedChanged="@{personalInforamtion.onAddressConfirmed}"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/rb_IsNameboardseenattheHouseYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/RadioButton"
+                    android:text="@string/radio_Yes"/>
+                <RadioButton android:id="@+id/rb_IsNameboardseenattheHouseNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/RadioButton"
+                    android:text="@string/radio_No"/>
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/ll_NameboardMismatched"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <com.pms.rcuapp.widget.SmallText
+                    android:id="@+id/applicant_IsNameboardmismatched_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/applicant_IsNameboardmismatched_label"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textSize="@dimen/_12sdp">
+                </com.pms.rcuapp.widget.SmallText>
+                <RadioGroup
+                    android:id="@+id/rb_IsNameboardseenattheHouse_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onCheckedChanged="@{personalInforamtion.onAddressConfirmed}"
+                    android:orientation="horizontal">
+                    <RadioButton android:id="@+id/rb_applicant_IsNameboardseenattheHouse_labelYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/RadioButton"
+                        android:text="@string/radio_Yes"/>
+                    <RadioButton android:id="@+id/rb_applicant_IsNameboardseenattheHouse_labeleNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/RadioButton"
+                        android:text="@string/radio_No"/>
+                </RadioGroup>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/inpApplicant_Reason_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextInputLayout"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    app:hintTextColor="@color/main_bg"
+                    app:passwordToggleEnabled="false"
+                    android:layout_weight="1"
+                    tools:ignore="InefficientWeight,MissingClass,MissingConstraints">
+
+                    <com.pms.rcuapp.widget.TypefaceEditText
+                        android:id="@+id/edt_Applicant_Reason_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_size"
+                        android:hint="@string/notRecoginsedReason"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:text="@={personalInforamtion.edt_Reason}"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray_323232"
+                        android:textSize="@dimen/verificationDetailTextSize"
+                        app:custom_font="@string/app_font_regular" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

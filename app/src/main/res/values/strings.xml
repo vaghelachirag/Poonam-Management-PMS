@@ -1,46 +1,267 @@
 <resources>
     <string name="app_name">Poonam Management PMS</string>
     <string name="action_settings">Settings</string>
+    <string name="action_changePassword">Change Password</string>
+    <string name="action_logout">Logout</string>
+
+
+    <string name="app_font_bold">roboto_bold.ttf</string>
+    <string name="app_font_medium">roboto_medium.ttf</string>
+    <string name="app_font_regular">roboto_regular.ttf</string>
+    <string name="app_font_thin">roboto_thin.ttf</string>
+    <string name="app_font_light">roboto_light.ttf</string>
+
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="splash_fragment_label">Splash Fragment</string>
+    <string name="login_fragment_label">Login Fragment</string>
+    <string name="signup_fragment_label">Signup Fragment</string>
+    <string name="home_fragment_label">Home Fragment</string>
+    <string name="dashboard_fragment_label">Dashboard Fragment</string>
+    <string name="dashboard_menu_fragment_label">Dashboard Menu Fragment</string>
+    <string name="webView_fragment_label">Dashboard Fragment</string>
+
+
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="lorem_ipsum">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
-        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
-        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
-        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
-        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
-        bibendum, vel congue leo egestas.\n\n
-        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
-        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
-        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
-        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
-        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
-        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
-        est.\n\n
-        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
-        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
-        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
-        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
-        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
-        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
-        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
-        convallis.\n\n
-        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
-        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
-        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
-        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
-        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
-        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
-    </string>
+    <string name="splash_Txt">Splash</string>
+
+
+    <string name="fa_icon_areachart">&#xf1fe;</string>
+
+
+    <!-- RCU Verification!-->
+    <string name="applicant_address_label">Applicant Address Detail</string>
+    <string name="applicant_address_confirmed_label">Address Confirm as given <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_address_belongs_label">Is this address belongs to applicant ? <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_address_VisitHouse_label">During Visit House is Open ? <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_PersonMet_label">Name of the Person Met <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_Relation_Applicant_label">Relation with Applicant <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_MobileNoOfPersonMet_label">Mobile No of Person Met</string>
+    <string name="applicant_Age_label">Age</string>
+    <string name="applicant_MaritalStatus_label">Marital Status *</string>
+    <string name="applicant_DetailsOfTotalFamilyMembers_label">Details of Total Family Members</string>
+    <string name="applicant_Relation_label">Relation</string>
+    <string name="applicant_MemberCount_label">Member Count</string>
+    <string name="applicant_EarningCount_label">Earning Count</string>
+    <string name="applicant_TotalFamilyMembers_label">Total Family members <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_TotalEarningMember_label">Total Earning Member <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_HouseOwnership_label">House Ownership <font color='#ff0000' ><b>*</b></font></string>
+
+    <!--Rent-->
+    <string name="applicant_PermanentAddress_label">Permanent Address</string>
+    <string name="applicant_MonthlyRentAmount_label">Monthly Rent Amount</string>
+    <string name="applicant_LandlordName_label">Landlord Name</string>
+    <string name="applicant_LandlordMobileNo_label">Landlord Mobile No</string>
+
+
+    <string name="applicant_StayingAtCurrentAddress_label">Staying at current address (In Years) <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_ElectricityBill_label">Name in Electricity Bill</string>
+    <string name="applicant_KNo_label">K No</string>
+    <string name="applicant_UnitConsumedLastMonth_label">Unit Consumed last Month</string>
+    <string name="applicant_HouseLocality_label">House Locality <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_AccommodationType_label">Accommodation Type <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_HouseSize_label">House Size</string>
+    <string name="applicant_IsNameboardseenattheHouse_label">Is Nameboard seen at the House ? <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_IsNameboardmismatched_label">Is Nameboard mismatched ? *</string>
+    <string name="applicant_ApplicantBackgroundCheck_label">Applicant Background Check</string>
+    <string name="applicant_Isapplicanthaveanymajormedicalhistory_label">Is applicant have any major medical history?</string>
+    <string name="applicant_Isapplicanthaveanypoliticalconnection_label">Is applicant have any political connection ?</string>
+    <string name="applicant_BankName_label">Bank Name</string>
+    <string name="applicant_LoanAmount_label">Loan Amount</string>
+    <string name="applicant_RunningSince_label">Running Since (Years)</string>
+    <string name="applicant_Isanyotherloanrunning_label">Is any other loan running ?</string>
+
+    <string name="applicant_IsInvolvedinNegativeProfile_label">Is Involved in Negative Profile ?</string>
+    <string name="applicant_IsAreaNegative_label">Is Area Negative ?</string>
+    <string name="applicant_IsCastCommunityDominatedArea_label">Is Cast / Community Dominated Area ?</string>
+    <string name="applicant_Latitude_label">Latitude</string>
+    <string name="applicant_Longitude_label">Longitude</string>
+    <string name="applicant_OtherObservations_label">Other Observations</string>
+    <string name="applicant_Co_ApplicantDetails_label">Co-Applicant Details</string>
+    <string name="applicant_RCUOwner_label">RCU Owner</string>
+    <string name="applicant_MobileNo_label">Mobile No.</string>
+    <string name="applicant_relation_label">Relation</string>
+    <string name="applicant_VerificationRemark_label">Verification Remark</string>
+    <string name="applicant_PersonalInformation_label">Personal Information</string>
+
+    <string name="radio_Yes">Yes</string>
+    <string name="radio_No">No</string>
+
+
+    <!-- RCU Document Verification!-->
+    <string name="applicant_is_office_open_label">Is Office Open at the time of visit ?<font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_Designation_label">Designation of the person met<font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_Document_signed_label">Whether document signed/Issued by the authorised Person<font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_personally_met_with_authorised_label">Whether we personally met with authorised person ?<font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_authorised_name_label">Authorized Person Name</string>
+    <string name="applicant_authorised_person_designation_label">Authorized Person Designation</string>
+    <string name="applicant_isAnyProof_label">Is any Proof/ Evidences shown ? <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_name_of_document_label">Name of Document</string>
+
+
+
+    <!-- Asset Verification!-->
+    <string name="applicant_assest_address_confirmed_label">Address Confirm as given <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_assest_address_belongs_label">Is this address belongs to applicant ? <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_vehicle_verified_label">Vehicle /Equipment Physically Verfied</string>
+    <string name="applicant_assets_PersonMet_label">Name of the Person Met <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_assets_Relation_Applicant_label">Relation with Applicant <font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_assets_MobileNoOfPersonMet_label">Mobile No of Person Met</string>
+    <string name="applicant_chasis_no_label">Chassis No / Serial No</string>
+    <string name="applicant_engine_no_label">Engine No</string>
+    <string name="applicant_pump_no_label">Pump No</string>
+    <string name="applicant_meter_reading_label">Meter Reading (Hours/KM)</string>
+    <string name="applicant_vehiclenumber_label">Vehicle Number</string>
+    <string name="applicant_make_manufacture_label">Make / Manufacturer<font color='#ff0000' ><b>*</b></font></string>
+    <string name="applicant_Model_label">Model</string>
+    <string name="applicant_copy_of_rc_label">Copy of RC / Invoice / Insurance Available</string>
+    <string name="applicant_third_party_use_label">Third Party Use</string>
+    <string name="applicant_end_use_of_vehicle_label">End Use of the Vehicle / Equipment</string>
+    <string name="applicant_when_assets_delivered_label">When Asset was delivered / Installed (Month/Year)</string>
+
+
+    <!--Login-->
+    <string name="login_Txt">Login</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="btn_Login">Login</string>
+    <string name="donthaveId">Do not have Account? Signup here</string>
+
+
+    <string name="changePassword_Txt">Change Password</string>
+
+
+    <!--Signup-->
+    <string name="employeecode">Employee Code</string>
+    <string name="remark">Remark</string>
+    <string name="btn_Signup">Send Request</string>
+
+
+
+    <!--Change Password-->
+    <string name="oldPassword">Old Password</string>
+    <string name="newpassword">New Password</string>
+    <string name="confirmpassword">Confirm Password</string>
+
+
+
+    <!--PreNeighbour-->
+    <string name="neighbour1Name">Neighbour1 Name</string>
+    <string name="neighbour2Name">Neighbour2 Name</string>
+    <string name="neighbour1Mobile">Neighbour1 Mobile</string>
+    <string name="neighbour2Mobile">Neighbour2 Mobile</string>
+    <string name="neighbour1Remark">Neighbour1 Remark</string>
+    <string name="neighbour2Remark">Neighbour2 Remark</string>
+    <string name="notRecoginsedReason">Reason</string>
+    <string name="neighbourreconised">Whether Neighbour Recognised to the Applicant with Photo ?</string>
+
+    <string name="logoutAlert">Are you sure want to Logout?</string>
+
+
+    <!--PostNeighbour-->
+    <string name="neighbour3Name">Neighbour3 Name</string>
+    <string name="neighbour4Name">Neighbour4 Name</string>
+    <string name="neighbour3Mobile">Neighbour3 Mobile</string>
+    <string name="neighbour4Mobile">Neighbour4 Mobile</string>
+    <string name="neighbour3Remark">Neighbour3 Remark</string>
+    <string name="neighbour4Remark">Neighbour4 Remark</string>
+
+
+    <string name="alredayhaveId">Already have Account? Login here</string>
+
+
+    <string name="verificationfor">Verification For :  </string>
+    <string name="address">Address :  </string>
+    <string name="mobileNumber">Mobile No :  </string>
+    <string name="bank">Bank : </string>
+    <string name="product">Product : </string>
+    <string name="caseId">CaseId : </string>
+    <string name="assignDate">Assign Dt : </string>
+    <string name="fitype">Fi Type : </string>
+    <string name="totalVerification">Total Verification :</string>
+
+
+
+    <!--  Residence Verification-->
+    <string name="refNo">Ref No</string>
+    <string name="caseID">Case Id</string>
+    <string name="bankName">Bank/NBFC</string>
+    <string name="verificationFor">Verification for</string>
+    <string name="verificationType">Verification Type</string>
+    <string name="applicant">Applicant/ Father Name</string>
+    <string name="coapplicant">Co-applicant / Guarantor/ Seller Name</string>
+    <string name="addressFor">Address</string>
+    <string name="applicantfathername">Applicant/ Father Name</string>
+    <string name="productsubproduct">Product/Sub Product</string>
+    <string name="officeName">Business / Office Name</string>
+    <string name="prepost">Pre/Post</string>
+    <string name="loanAmount">Loan Amount</string>
+    <string name="triggers">Triggers</string>
+    <string name="backendname">Assign By</string>
+    <string name="assigndt">Assign Dt</string>
+
+
+   <!-- Final Submit-->
+    <string name="status">Status</string>
+    <string name="remarks">Remarks</string>
+
+
+    <string name="save">Save</string>
+
+
+    <string name="click_to_upload">Click to Upload</string>
+    <string name="upload">Upload</string>
+
+    <string name="option_gallery">Gallery</string>
+    <string name="option_camera">Camera</string>
+
+
+    <string-array name="addresses_array">
+        <item>Select Address</item>
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+        <item>Item 4</item>
+        <item>Item 5</item>
+    </string-array>
+
+    <string-array name="neighbourrecognised_array">
+        <item>Yes</item>
+        <item>No</item>
+        <item>Denied</item>
+        <item>Photo Not Available</item>
+    </string-array>
+
+
+    <string-array name="house_locality_array">
+        <item>Years</item>
+        <item>Months</item>
+    </string-array>
+
+    <string-array name="material_status">
+        <item>Select</item>
+        <item>Married</item>
+        <item>Unmarried</item>
+        <item>Divorcee</item>
+    </string-array>
+
+
+
+    <string-array name="house_size">
+        <item>Select</item>
+        <item>Sq Fts</item>
+        <item>Sq Yards</item>
+    </string-array>
+
+
+    <!--Common-->
+    <string name="please_wait">Please wait</string>
+    <string name="dashboard">Dashboard</string>
+
+
+    <!--    No Internet Connection Message -->
+    <string name="nointernetconnection">Local network problem, please check your network</string>
+
 </resources>

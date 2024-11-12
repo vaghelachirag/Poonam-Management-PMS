@@ -12,7 +12,8 @@ import android.util.Log
 import com.google.firebase.messaging.RemoteMessage
 import android.content.Intent
 import android.graphics.BitmapFactory
-import com.squmish.rcuapp.MainActivity
+import com.pms.rcuapp.MainActivity
+import com.pms.rcuapp.R
 import com.pms.rcuapp.uttils.Session
 import com.pms.rcuapp.uttils.Session.Companion.KEY_USER_TOKEN
 
@@ -74,16 +75,16 @@ class Firebase_MessagingService : FirebaseMessagingService() {
             builder = Notification.Builder(this, channelId)
                 .setContentTitle(remoteMessage.notification!!.title)
                 .setContentText(remoteMessage.notification!!.body)
-                .setSmallIcon(com.squmish.rcuapp.R.mipmap.ic_launcher)
-                .setLargeIcon(BitmapFactory.decodeResource(this.resources, com.squmish.rcuapp.R.drawable.ic_launcher_background))
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.ic_launcher_background))
                 .setContentIntent(pendingIntent)
         } else {
 
             builder = Notification.Builder(this)
                 .setContentTitle(remoteMessage.notification!!.title)
                 .setContentText(remoteMessage.notification!!.body)
-                .setSmallIcon(com.squmish.rcuapp.R.mipmap.ic_launcher)
-                .setLargeIcon(BitmapFactory.decodeResource(this.resources, com.squmish.rcuapp.R.drawable.ic_launcher_background))
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.ic_launcher_background))
                 .setContentIntent(pendingIntent)
         }
         notificationManager.notify(1234, builder.build())

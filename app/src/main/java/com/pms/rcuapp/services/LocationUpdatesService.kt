@@ -32,9 +32,9 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
-import com.squmish.rcuapp.MainActivity
-import com.squmish.rcuapp.R
-import com.squmish.rcuapp.view.menu.DashboardActivity
+import com.pms.rcuapp.MainActivity
+import com.pms.rcuapp.R
+import com.pms.rcuapp.view.menu.DashboardActivity
 import java.util.Locale
 
 
@@ -296,9 +296,7 @@ class LocationUpdatesService : Service(){
         // Set the Channel ID for Android O.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             builder.setChannelId("location_service_channel") // Channel ID
-        } else {
-            builder.priority = Notification.PRIORITY_HIGH
-        }
+        } else builder.priority = Notification.PRIORITY_HIGH
 
         return builder.build()
     }

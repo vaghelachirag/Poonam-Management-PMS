@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.pms.rcuapp.viewmodel.DashboardViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="@color/gray_616161"
+        android:layout_marginBottom="@dimen/_30sdp">
+
+
+        <LinearLayout
+            android:id="@+id/ll_Header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include   android:id="@+id/layout_detail" layout="@layout/layout_activity_header" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_MainTotalVerification"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@+id/ll_Header">
+
+            <com.pms.rcuapp.widget.SmallText
+                android:id="@+id/totalVerification"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingStart="20dp"
+                android:text="@string/totalVerification"
+                tools:ignore="MissingConstraints,RtlSymmetry">
+
+            </com.pms.rcuapp.widget.SmallText>
+
+            <LinearLayout
+                android:id="@+id/ll_TotalVerification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints">
+
+                <com.pms.rcuapp.widget.HeaderText
+                    android:id="@+id/totalVerificationCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/white_circle_drawable"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:text="1">
+
+                </com.pms.rcuapp.widget.HeaderText>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_MainTotalVerification"
+            app:layout_constraintVertical_bias="0.123"
+            tools:layout_editor_absoluteX="0dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDashboard"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:clipToPadding="false"
+                android:fadeScrollbars="false"
+                android:overScrollMode="never"
+                android:paddingTop="6dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_dashboard" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

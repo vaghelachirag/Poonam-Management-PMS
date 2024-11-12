@@ -1,7 +1,7 @@
 package com.pms.rcuapp.network
 
 import android.os.StrictMode
-import io.reactivex.rxjava3.observers.DisposableObserver
+import io.reactivex.observers.DisposableObserver
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.HttpException

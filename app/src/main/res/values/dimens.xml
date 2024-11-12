@@ -1,3 +1,11 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="loginTextSize">14.00sp</dimen>
+    <dimen name="verificationDetailTextSize">@dimen/_12ssp</dimen>
+    <dimen name="edit_text_size">@dimen/_40ssp</dimen>
+    <dimen name="corner_radius">5.00sp</dimen>
+
+    <dimen name="table_padding">@dimen/_3sdp</dimen>
+
 </resources>

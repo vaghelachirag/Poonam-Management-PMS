@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.squmish.rcuapp.room.DbConfig
+import com.pms.rcuapp.room.DbConfig
 
 
 @Entity(tableName = DbConfig.MASTER_DATA_TABLE)

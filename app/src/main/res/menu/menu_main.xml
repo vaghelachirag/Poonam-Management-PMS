@@ -1,10 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.pms.rcuapp.MainActivity">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/HomeFragment"
+            android:icon="@drawable/ic_home"
+            android:title="@string/dashboard" />
+
+    </group>
+    <group
+        android:id="@+id/nav_footer">
+
+        <item
+            android:id="@+id/nav_log_version"
+            app:actionLayout="@layout/menu_footer"
+            android:title="" />
+    </group>
 </menu>

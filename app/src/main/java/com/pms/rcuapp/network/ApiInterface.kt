@@ -1,5 +1,5 @@
 package com.pms.rcuapp.network
-import android.database.Observable
+import com.pms.rcuapp.model.saveresidenceverification.SaveVerificationDataDetail
 import com.pms.rcuapp.model.changepassword.GetChangePasswordResponse
 import com.pms.rcuapp.model.dashboard.getDashboardApiResponse.GetDashboardApiResponse
 import com.pms.rcuapp.model.finalSubmission.GetFinalSubmissionApiResponse
@@ -16,15 +16,13 @@ import com.pms.rcuapp.model.getverificationDetailResponse.GetVerificationDetailR
 import com.pms.rcuapp.model.login.GetLoginResponseModel
 import com.pms.rcuapp.model.pendingRequest.GetPendingRequestResponse
 import com.pms.rcuapp.model.registerDevice.GetDeviceRegistrationResponse
-import com.pms.rcuapp.model.saveresidenceverification.SaveVerificationDataDetail
+import io.reactivex.Observable
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Query
-
-
 interface ApiInterface {
 
     @Headers("secret-key: MiPC9BjkCyGDFQXbSkoZcgqH3hpacKA76123J8322EpesabBDjsF23RTdsq8L123278956565452")
@@ -33,13 +31,13 @@ interface ApiInterface {
 
     @Headers("secret-key: MiPC9BjkCyGDFQXbSkoZcgqH3hpacKA76123J8322EpesabBDjsF23RTdsq8L123278956565452")
     @POST("api/MobileRegistrationRequest/Save")
-    fun registerUser(@Body requestBody: RequestBody): Observable<GetDeviceRegistrationResponse>
+    fun registerUser(@Body requestBody: RequestBody): io.reactivex.Observable<GetDeviceRegistrationResponse>
 
     @GET("api/FIRequestVerificationView/GetPendingVerification")
-    fun getPendingRequest(@Query("rcutype") Rcutype: String): Observable<GetPendingRequestResponse>
+    fun getPendingRequest(@Query("rcutype") Rcutype: String): android.database.Observable<GetPendingRequestResponse>
 
     @GET("api/MasterData/GetAllMaster")
-    fun getMasterApiData(): Observable<GetMasterApiResponse>
+    fun getMasterApiData(): io.reactivex.Observable<GetMasterApiResponse>
 
     @GET("api/FiRequest/GetVerificationRecord")
     fun getVerificationRequestDetail(@Query("FIRequestId") requestId: String): Observable<GetVerificationDetailResponse>
