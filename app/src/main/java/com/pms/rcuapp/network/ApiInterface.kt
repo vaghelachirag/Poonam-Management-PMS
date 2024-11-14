@@ -25,11 +25,11 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 interface ApiInterface {
 
-    @Headers("secret-key: MiPC9BjkCyGDFQXbSkoZcgqH3hpacKA76123J8322EpesabBDjsF23RTdsq8L123278956565452")
+    @Headers("secret-key: AiPC9BjkCyDFQXbSkoZcgqH3hpacA76123J8322EpesabBDjs23RTdsq8L123278956565450")
     @POST("api/login/mobileuserlogin")
     fun login(@Body requestBody: RequestBody): Observable<GetLoginResponseModel>
 
-    @Headers("secret-key: MiPC9BjkCyGDFQXbSkoZcgqH3hpacKA76123J8322EpesabBDjsF23RTdsq8L123278956565452")
+    @Headers("secret-key: AiPC9BjkCyDFQXbSkoZcgqH3hpacA76123J8322EpesabBDjs23RTdsq8L123278956565450")
     @POST("api/MobileRegistrationRequest/Save")
     fun registerUser(@Body requestBody: RequestBody): io.reactivex.Observable<GetDeviceRegistrationResponse>
 

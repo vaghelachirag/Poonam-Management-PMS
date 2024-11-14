@@ -17,7 +17,7 @@ object AppConstants {
 
 
     // For Base URL
-    var baseURL = "https://squeamish.co.in/Squeamishapi/"
+    var baseURL = "https://poonammanagement.com/rcuapi/"
     var baseURLImage = "https://squeamish.co.in"
 
    /* Status Code*/
