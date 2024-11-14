@@ -12,37 +12,44 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@drawable/main_graident">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/ll_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:backgroundTint="@color/white"
             tools:ignore="MissingConstraints">
 
+
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_180sdp"
-                android:foreground="@drawable/image_overlay"
-                android:background="@drawable/login_bg">
-
+                android:id="@+id/iv_LeftIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_80ssp"
+                android:layout_marginStart="-20dp"
+                android:src="@drawable/icon_top_left_leaf">
             </ImageView>
-        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/ivLogo"
-            android:layout_width="250sp"
-            android:layout_height="100sp"
-            android:layout_marginBottom="@dimen/_16sdp"
-            android:transitionName="appLogo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/icon_splash"
-            android:visibility="visible"
-            tools:targetApi="lollipop" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_80ssp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="-20dp"
+                android:contentDescription="TODO"
+                android:src="@drawable/icon_top_right_leaf">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/iv_Logo"
+                android:layout_width="@dimen/_60ssp"
+                android:layout_height="@dimen/_60ssp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_30ssp"
+                android:contentDescription="TODO"
+                android:src="@drawable/icon_main">
+            </ImageView>
+
+        </RelativeLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -97,7 +104,6 @@
                     android:id="@+id/edt_EmailAddress"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_size"
-                    android:background="@null"
                     android:hint="@string/employeecode"
                     android:text="@={viewModel.email}"
                     android:gravity="center_vertical"
@@ -106,6 +112,7 @@
                     android:maxLength="50"
                     android:singleLine="true"
                     android:textColor="@color/black"
+                    android:background="@drawable/round_shape_edittext"
                     android:textColorHint="@color/gray_323232"
                     android:textSize="@dimen/loginTextSize"
                     app:custom_font="@string/app_font_regular"
@@ -133,12 +140,12 @@
                     android:id="@+id/edtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_size"
-                    android:background="@null"
                     android:hint="@string/password"
                     android:inputType="textPassword"
                     android:gravity="center_vertical"
                     android:imeOptions="actionDone"
                     android:maxLength="50"
+                    android:background="@drawable/round_shape_edittext"
                     android:singleLine="true"
                     android:text="@={viewModel.password}"
                     android:textColor="@color/black"
