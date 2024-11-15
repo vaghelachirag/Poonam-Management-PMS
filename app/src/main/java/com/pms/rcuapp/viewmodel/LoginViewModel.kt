@@ -76,11 +76,22 @@ class LoginViewModel(
     @SuppressLint("HardwareIds")
     private fun callLoginAPI() {
         var session = Session(context)
-        
+
+
+        Log.e("Token", session.getStoreTokenByKey().toString())
+        val deviceId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+        val manufacturer = Build.MANUFACTURER
+        val androidModel = Build.MODEL
+        val deviceToken = session.getStoreTokenByKey().toString()
+
+
         val params = HashMap<String,Any>()
         params["EmployeeCode"] = email.get().toString()
         params["Password"] = password.get().toString()
         params["AppId"] = "BCF97D6D0DB4C5E83107TR11"
+        params["DeviceId"] = deviceId
+        params["firebasetoken"] = deviceToken
+        params["AppVersion"] = BuildConfig.VERSION_NAME.toString()
 
 
         if (Utility.isNetworkConnected(context)){

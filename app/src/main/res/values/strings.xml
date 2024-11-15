@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Poonam Management PMS</string>
+    <string name="app_name">Poonam Management</string>
     <string name="action_settings">Settings</string>
     <string name="action_changePassword">Change Password</string>
     <string name="action_logout">Logout</string>
