@@ -34,7 +34,7 @@ interface ApiInterface {
     fun registerUser(@Body requestBody: RequestBody): io.reactivex.Observable<GetDeviceRegistrationResponse>
 
     @GET("api/FIRequestVerificationView/GetPendingVerification")
-    fun getPendingRequest(@Query("rcutype") Rcutype: String): android.database.Observable<GetPendingRequestResponse>
+    fun getPendingRequest(@Query("rcutype") Rcutype: String): Observable<GetPendingRequestResponse>
 
     @GET("api/MasterData/GetAllMaster")
     fun getMasterApiData(): io.reactivex.Observable<GetMasterApiResponse>

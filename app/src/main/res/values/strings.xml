@@ -134,6 +134,7 @@
 
 
     <!--Signup-->
+    <string name="register_Txt">Register</string>
     <string name="employeecode">Employee Code</string>
     <string name="remark">Remark</string>
     <string name="btn_Signup">Send Request</string>

@@ -50,7 +50,6 @@
 
         </RelativeLayout>
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="0dp"
@@ -210,7 +209,22 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chkRememberPassword" />
+
+            <ImageView
+                android:id="@+id/iv_Bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_bottom_leaf"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_100ssp"
+                app:layout_constraintTop_toBottomOf="@+id/txt_RedirectToSignup"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints,UnknownId">
+
+            </ImageView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

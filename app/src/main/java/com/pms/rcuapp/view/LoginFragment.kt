@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.request.RequestOptions
 import com.pms.rcuapp.R
 import com.pms.rcuapp.databinding.LoginscreenBinding
 import com.pms.rcuapp.uttils.Session
@@ -26,7 +27,7 @@ class LoginFragment : BaseFragment() {
     private var _binding: LoginscreenBinding? = null
     private val binding get() = _binding!!
     private val signInViewModel by lazy { LoginViewModel(activity as Context,this@LoginFragment,binding) }
-
+    private var options: RequestOptions? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = LoginscreenBinding.inflate(inflater, container, false)
@@ -45,6 +46,11 @@ class LoginFragment : BaseFragment() {
             if (isLoading && isAdded) showProgressbar()
             else if (!isLoading && isAdded) hideProgressbar()
         }
+
+        options = RequestOptions()
+            .circleCrop()
+            .placeholder(R.drawable.icon_main)
+            .error(R.drawable.icon_main)
 
         return binding.root
 

@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1054678505074",
-    "project_id": "squeamish-8b25f",
-    "storage_bucket": "squeamish-8b25f.appspot.com"
+    "project_number": "189025645099",
+    "project_id": "poonam-management",
+    "storage_bucket": "poonam-management.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1054678505074:android:068aaa1a9d087646ea54eb",
+        "mobilesdk_app_id": "1:189025645099:android:e96a1a6e4983d423d7706e",
         "android_client_info": {
           "package_name": "com.pms.rcuapp"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAhUEyi3thIV_Vyt39knZSA2cXobCPnRdQ"
+          "current_key": "AIzaSyBRz7e_GmxNsEmHaLR2h22fdZdCIfc0_2U"
         }
       ],
       "services": {

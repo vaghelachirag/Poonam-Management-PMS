@@ -176,7 +176,7 @@ class FragmentPhotograph: BaseFragment(), FragmentLifecycleInterface {
             imgFile = File(imagesFolder, Date().time.toString() + ".jpg")
             imagePath = FileProvider.getUriForFile(
                 requireActivity(),
-                BuildConfig.APPLICATION_ID + ".fileProvider",
+                com.pms.rcuapp.BuildConfig.APPLICATION_ID + ".fileProvider",
                 imgFile!!
             )
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)

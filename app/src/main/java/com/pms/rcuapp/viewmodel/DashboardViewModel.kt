@@ -1,14 +1,10 @@
 package com.pms.rcuapp.viewmodel
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.pms.rcuapp.uttils.Utils
-import com.pms.rcuapp.view.adapter.DashboardAdapter
-import com.pms.rcuapp.view.menu.DashboardFragment
 import com.pms.rcuapp.R
 import com.pms.rcuapp.databinding.DashboardFragmentBinding
 import com.pms.rcuapp.interfaces.OnItemSelected
@@ -21,16 +17,16 @@ import com.pms.rcuapp.network.CallbackObserver
 import com.pms.rcuapp.network.Networking
 import com.pms.rcuapp.room.InitDb
 import com.pms.rcuapp.room.dao.MasterDataDao
-import com.pms.rcuapp.uttils.AppConstants
 import com.pms.rcuapp.uttils.Session
 import com.pms.rcuapp.uttils.Utility
-import com.pms.rcuapp.view.menu.DashboardMenuFragment
+import com.pms.rcuapp.uttils.Utils
+import com.pms.rcuapp.view.adapter.DashboardAdapter
+import com.pms.rcuapp.view.menu.DashboardFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
 
 
 class DashboardViewModel(val context: Context, val dashboardFragment: DashboardFragment, val binding: DashboardFragmentBinding) : BaseViewModel(){
@@ -61,7 +57,7 @@ class DashboardViewModel(val context: Context, val dashboardFragment: DashboardF
 
         if (Utility.isNetworkConnected(context)){
             isLoading.postValue(true)
-        /*    Networking.with(context)
+            Networking.with(context)
                 .getServices()
                 .getPendingRequest(rcuType)
                 .subscribeOn(Schedulers.io())
@@ -83,22 +79,22 @@ class DashboardViewModel(val context: Context, val dashboardFragment: DashboardF
                         isLoading.postValue(false)
                         binding.refreshLayout.isRefreshing = false
                         if(t.getStatusCode() == 200){
-                          verificationList.clear()
-                          if(t.getData() != null){
-                             verificationList = t.getData()!!
-                              totalVerification.value = verificationList.size
-                              setVerificationAdapter()
-                             if (session.getIsFirstTimeKey()){
-                                 CoroutineScope(Dispatchers.IO).launch {
-                                     if (masterDataDao!!.getMasterDataList().size > 0){
-                                         Log.e("Master",masterDataDao!!.getMasterDataList().size.toString())
-                                      }
-                                     else{
-                                         getMasterDataApi()
-                                     }
-                                 }
-                             }
-                          }
+                            verificationList.clear()
+                            if(t.getData() != null){
+                                verificationList = t.getData()!!
+                                totalVerification.value = verificationList.size
+                                setVerificationAdapter()
+                                if (session.getIsFirstTimeKey()){
+                                    CoroutineScope(Dispatchers.IO).launch {
+                                        if (masterDataDao!!.getMasterDataList().size > 0){
+                                            Log.e("Master",masterDataDao!!.getMasterDataList().size.toString())
+                                        }
+                                        else{
+                                            getMasterDataApi()
+                                        }
+                                    }
+                                }
+                            }
                         }else{
                             isLoading.postValue(false)
                             Utils().showToast(context,t.getMessage().toString())
@@ -107,7 +103,7 @@ class DashboardViewModel(val context: Context, val dashboardFragment: DashboardF
                         Log.e("StatusCode",t.getStatus().toString())
                     }
 
-                })*/
+                })
         }else{
 
             isLoading.postValue(false)
@@ -115,7 +111,7 @@ class DashboardViewModel(val context: Context, val dashboardFragment: DashboardF
         }
     }
 
-   // Get Master Data Api
+    // Get Master Data Api
     private fun getMasterDataApi() {
         if (Utility.isNetworkConnected(context)){
             isLoading.postValue(true)

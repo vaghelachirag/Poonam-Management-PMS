@@ -18,7 +18,7 @@ object AppConstants {
 
     // For Base URL
     var baseURL = "https://poonammanagement.com/rcuapi/"
-    var baseURLImage = "https://squeamish.co.in"
+    var baseURLImage = "https://poonammanagement.com"
 
    /* Status Code*/
     var StatusCode0 = "Pending"
