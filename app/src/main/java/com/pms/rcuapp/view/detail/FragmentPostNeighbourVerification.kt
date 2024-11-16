@@ -59,13 +59,21 @@ class FragmentPostNeighbourVerification  : BaseFragment(), FragmentLifecycleInte
     }
 
     private fun setView() {
-        postNeighbourVerificationViewModel.isNeighbourReconised.observeForever {
+        postNeighbourVerificationViewModel.isNeighbour1StatusReconised.observeForever {
             if (it){
-                binding.inpReason.visibility = View.GONE
-                binding.edtReason.setText(buildString {})
+                binding.inpNeighbour1Remark.visibility = View.GONE
             }
             else{
-                binding.inpReason.visibility = View.VISIBLE
+                binding.inpNeighbour1Remark.visibility = View.VISIBLE
+            }
+        }
+
+        postNeighbourVerificationViewModel.isNeighbour2StatusReconised.observeForever {
+            if (it){
+                binding.inpNeighbour2Remark.visibility = View.GONE
+            }
+            else{
+                binding.inpNeighbour2Remark.visibility = View.VISIBLE
             }
         }
 

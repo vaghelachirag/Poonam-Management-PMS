@@ -153,6 +153,8 @@
     <string name="neighbour2Name">Neighbour2 Name</string>
     <string name="neighbour1Status">Neighbour1 Status</string>
     <string name="neighbour2Status">Neighbour2 Status</string>
+    <string name="neighbour3Status">Neighbour3 Status</string>
+    <string name="neighbour4Status">Neighbour4 Status</string>
     <string name="neighbour1Remark">Neighbour1 Remark</string>
     <string name="neighbour2Remark">Neighbour2 Remark</string>
     <string name="notRecoginsedReason">Reason</string>

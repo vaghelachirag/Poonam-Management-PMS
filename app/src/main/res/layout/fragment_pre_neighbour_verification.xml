@@ -115,7 +115,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         app:hintTextColor="@color/main_bg"
                         app:passwordToggleEnabled="false"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         tools:ignore="MissingClass,MissingConstraints">
 
                         <com.pms.rcuapp.widget.TypefaceEditText
@@ -206,7 +206,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         app:hintTextColor="@color/main_bg"
                         app:passwordToggleEnabled="false"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         app:layout_constraintTop_toBottomOf="@+id/inpNeighbour2Status"
                         tools:ignore="MissingClass,MissingConstraints">
 

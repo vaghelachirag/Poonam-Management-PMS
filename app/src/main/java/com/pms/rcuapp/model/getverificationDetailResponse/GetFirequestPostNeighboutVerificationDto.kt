@@ -19,14 +19,6 @@ class GetFirequestPostNeighboutVerificationDto {
     @Expose
     private var neighbour4Name: Any? = null
 
-    @SerializedName("neighbour3Mobile")
-    @Expose
-    private var neighbour3Mobile: Any? = null
-
-    @SerializedName("neighbour4Mobile")
-    @Expose
-    private var neighbour4Mobile: Any? = null
-
     @SerializedName("neighbour3Remark")
     @Expose
     private var neighbour3Remark: Any? = null
@@ -35,13 +27,13 @@ class GetFirequestPostNeighboutVerificationDto {
     @Expose
     private var neighbour4Remark: Any? = null
 
-    @SerializedName("isNeighbourRecognised")
+    @SerializedName("neighbour3Status")
     @Expose
-    private var isNeighbourRecognised: String? = ""
+    private var neighbour3Status: Any? = null
 
-    @SerializedName("reason")
+    @SerializedName("neighbour4Status")
     @Expose
-    private var reason: Any? = null
+    private var neighbour4Status: Any? = null
 
     fun getFirequestId(): Int? {
         return firequestId
@@ -67,22 +59,6 @@ class GetFirequestPostNeighboutVerificationDto {
         this.neighbour4Name = neighbour4Name
     }
 
-    fun getNeighbour3Mobile(): Any? {
-        return neighbour3Mobile
-    }
-
-    fun setNeighbour3Mobile(neighbour3Mobile: Any?) {
-        this.neighbour3Mobile = neighbour3Mobile
-    }
-
-    fun getNeighbour4Mobile(): Any? {
-        return neighbour4Mobile
-    }
-
-    fun setNeighbour4Mobile(neighbour4Mobile: Any?) {
-        this.neighbour4Mobile = neighbour4Mobile
-    }
-
     fun getNeighbour3Remark(): Any? {
         return neighbour3Remark
     }
@@ -99,20 +75,21 @@ class GetFirequestPostNeighboutVerificationDto {
         this.neighbour4Remark = neighbour4Remark
     }
 
-    fun getIsNeighbourRecognised(): String? {
-        return isNeighbourRecognised
+    fun getNeighbour3Status(): Any? {
+        return neighbour3Status
     }
 
-    fun setIsNeighbourRecognised(isNeighbourRecognised: String?) {
-        this.isNeighbourRecognised = isNeighbourRecognised
+    fun setNeighbour3Status(neighbour3Status: Any?) {
+        this.neighbour3Status = neighbour3Status
     }
 
-    fun getReason(): Any? {
-        return reason
+    fun getNeighbour4Status(): Any? {
+        return neighbour4Status
     }
 
-    fun setReason(reason: Any?) {
-        this.reason = reason
+    fun setNeighbour4Status(neighbour4Status: Any?) {
+        this.neighbour4Status = neighbour4Status
     }
+
 
 }

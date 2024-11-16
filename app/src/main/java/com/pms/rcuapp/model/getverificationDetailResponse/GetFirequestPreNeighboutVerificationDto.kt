@@ -6,26 +6,17 @@ import com.google.gson.annotations.SerializedName
 
 
 class GetFiRequestPreNeighboutVerificationDto {
-
     @SerializedName("firequestId")
     @Expose
     private var firequestId: Int? = null
 
     @SerializedName("neighbour1Name")
     @Expose
-    private var neighbour1Name: String = ""
+    private var neighbour1Name: String? = null
 
     @SerializedName("neighbour2Name")
     @Expose
     private var neighbour2Name: String? = null
-
-    @SerializedName("neighbour1Mobile")
-    @Expose
-    private var neighbour1Mobile: String? = null
-
-    @SerializedName("neighbour2Mobile")
-    @Expose
-    private var neighbour2Mobile: String? = null
 
     @SerializedName("neighbour1Remark")
     @Expose
@@ -35,13 +26,13 @@ class GetFiRequestPreNeighboutVerificationDto {
     @Expose
     private var neighbour2Remark: String? = null
 
-    @SerializedName("isNeighbourRecognised")
+    @SerializedName("neighbour1Status")
     @Expose
-    private var isNeighbourRecognised: String? = null
+    private var neighbour1Status: String? = null
 
-    @SerializedName("reason")
+    @SerializedName("neighbour2Status")
     @Expose
-    private var reason: Any? = null
+    private var neighbour2Status: String? = null
 
     fun getFirequestId(): Int? {
         return firequestId
@@ -55,7 +46,7 @@ class GetFiRequestPreNeighboutVerificationDto {
         return neighbour1Name
     }
 
-    fun setNeighbour1Name(neighbour1Name: String) {
+    fun setNeighbour1Name(neighbour1Name: String?) {
         this.neighbour1Name = neighbour1Name
     }
 
@@ -66,25 +57,6 @@ class GetFiRequestPreNeighboutVerificationDto {
     fun setNeighbour2Name(neighbour2Name: String?) {
         this.neighbour2Name = neighbour2Name
     }
-
-
-    fun getNeighbour2Mobile(): String? {
-        return neighbour2Mobile
-    }
-
-    fun getNeighbour1Mobile(): String? {
-        return neighbour1Mobile
-    }
-
-
-    fun setNeighbour2Mobile(neighbour2Mobile: String?) {
-        this.neighbour2Mobile = neighbour2Mobile
-    }
-
-    fun setNeighbour1Mobile(neighbour1Mobile: String?) {
-        this.neighbour1Mobile = neighbour1Mobile
-    }
-
 
     fun getNeighbour1Remark(): String? {
         return neighbour1Remark
@@ -102,20 +74,19 @@ class GetFiRequestPreNeighboutVerificationDto {
         this.neighbour2Remark = neighbour2Remark
     }
 
-    fun getIsNeighbourRecognised(): String? {
-        return isNeighbourRecognised
+    fun getNeighbour1Status(): String? {
+        return neighbour1Status
     }
 
-    fun setIsNeighbourRecognised(isNeighbourRecognised: String?) {
-        this.isNeighbourRecognised = isNeighbourRecognised
+    fun setNeighbour1Status(neighbour1Status: String?) {
+        this.neighbour1Status = neighbour1Status
     }
 
-    fun getReason(): Any? {
-        return reason
+    fun getNeighbour2Status(): String? {
+        return neighbour2Status
     }
 
-    fun setReason(reason: Any?) {
-        this.reason = reason
+    fun setNeighbour2Status(neighbour2Status: String?) {
+        this.neighbour2Status = neighbour2Status
     }
-
 }

@@ -5,6 +5,7 @@ import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.pms.rcuapp.uttils.Utils
@@ -27,20 +28,22 @@ class PreNeighbourVerificationViewModel(private val context: Context, val bindin
     // Login Params
     var neighbour1Name: ObservableField<String> = ObservableField()
     var neighbour2Name: ObservableField<String> = ObservableField()
-    var neighbour1Mobile: ObservableField<String> = ObservableField()
-    var neighbour2Mobile: ObservableField<String> = ObservableField()
     var neighbour1Remark: ObservableField<String> = ObservableField()
     var neighbour2Remark: ObservableField<String> = ObservableField()
-    var reason: ObservableField<String> = ObservableField()
 
 
     private var preNeighbourMutableLiveData: MutableLiveData<GetFiRequestPreNeighboutVerificationDto> =
         MutableLiveData()
 
-    var isNeighbourReconised = MutableLiveData<Boolean>()
-    var isNeighbourReconisedText = MutableLiveData<String>()
-    var selectedReasonPosition = MutableLiveData<Int>()
+    var isNeighbour1StatusReconised = MutableLiveData<Boolean>()
+    var isNeighbourStatus1ReconisedText = MutableLiveData<String>()
+    var selectedNeighbour1StatusPosition = MutableLiveData<Int>()
     var selectedItemPosition: Int = 0
+
+    var isNeighbour2StatusReconised = MutableLiveData<Boolean>()
+    var isNeighbourStatus2ReconisedText = MutableLiveData<String>()
+    var selectedNeighbour2StatusPosition = MutableLiveData<Int>()
+
 
     private var neighbourRecognisedList: List<String>? = null
 
@@ -52,29 +55,49 @@ class PreNeighbourVerificationViewModel(private val context: Context, val bindin
         binding.spnNeighbour1Status.setListAdapter(neighbourRecognisedList)
         binding.spnNeighbour2Status.setListAdapter(neighbourRecognisedList)
 
-        isNeighbourReconised.value = false
-        isNeighbourReconisedText.value = ""
-        selectedReasonPosition.value = 0
+        isNeighbour1StatusReconised.value = false
+        isNeighbourStatus1ReconisedText.value = ""
+        selectedNeighbour1StatusPosition.value = 0
+
+        isNeighbour2StatusReconised.value = false
+        isNeighbourStatus2ReconisedText.value = ""
+        selectedNeighbour2StatusPosition.value = 0
+
+
+        isNeighbourStatus1ReconisedText.observeForever {
+            if (!it.equals("Positive")){
+                binding.inpNeighbour1Remark.visibility = View.VISIBLE
+            }else{
+                binding.inpNeighbour1Remark.visibility = View.GONE
+            }
+        }
+
+        isNeighbourStatus2ReconisedText.observeForever {
+            if (!it.equals("Positive")){
+                binding.inpNeighbour2Remark.visibility = View.VISIBLE
+            }else{
+                binding.inpNeighbour2Remark.visibility = View.GONE
+            }
+        }
+
+        setSelectedNeighbourStatus1(Utility.getNullToBlankString(ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getNeighbour1Status().toString()))
+
 
         if (ActivityDetail.selectedData != null) {
-
             neighbour1Name.set(Utility.getNullToBlankString(ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getNeighbour1Name().toString()))
-            neighbour1Mobile.set(Utility.getNullToBlankString(ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getNeighbour1Mobile().toString()))
             neighbour1Remark.set(Utility.getNullToBlankString(ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getNeighbour1Remark().toString()))
             neighbour2Name.set(Utility.getNullToBlankString(ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getNeighbour2Name().toString()))
-            neighbour2Mobile.set(Utility.getNullToBlankString(ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getNeighbour2Mobile().toString()))
             neighbour2Remark.set(Utility.getNullToBlankString(ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getNeighbour2Remark().toString()))
-            reason.set(Utility.getNullToBlankString(ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getReason().toString()))
-            isNeighbourReconised.value = ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getIsNeighbourRecognised().toString() != "false"
+            isNeighbour1StatusReconised.value = ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getNeighbour1Status().toString() != "false"
         }
 
         binding.spnNeighbour1Status.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (!s.isNullOrBlank()){
-                    isNeighbourReconised.value = !(s.toString() == "No" || s.toString() == "Denied")
-                    isNeighbourReconisedText.value = s.toString()
+                    isNeighbour1StatusReconised.value = !(s.toString() == "Negative" || s.toString() == "Not Confirmed")
+                    isNeighbourStatus1ReconisedText.value = s.toString()
                 }else{
-                    isNeighbourReconised.value = false
+                    isNeighbour1StatusReconised.value = false
                 }
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -83,8 +106,36 @@ class PreNeighbourVerificationViewModel(private val context: Context, val bindin
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
         })
-        binding.spnNeighbour1Status.setText(Utility.getNullToBlankString(ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getIsNeighbourRecognised().toString()))
+
+        Log.e("Status1",ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getNeighbour1Status().toString())
+        binding.spnNeighbour1Status.setText(Utility.getNullToBlankString(ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getNeighbour1Status().toString()))
+
+        binding.spnNeighbour2Status.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (!s.isNullOrBlank()){
+                    isNeighbour2StatusReconised.value = !(s.toString() == "Negative" || s.toString() == "Not Confirmed")
+                    isNeighbourStatus2ReconisedText.value = s.toString()
+                }else{
+                    isNeighbour2StatusReconised.value = false
+                }
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
+        binding.spnNeighbour2Status.setText(Utility.getNullToBlankString(ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getNeighbour2Status().toString()))
     }
+
+    private fun setSelectedNeighbourStatus1(isText: String) {
+        val pos =
+            context.resources.getStringArray(R.array.neighbourstatus_array).indexOf(isText)
+        if (pos >= 0) {
+            selectedItemPosition = pos
+        }
+    }
+
 
     // On Saved Clicked
     fun onSaveClicked() {
@@ -120,12 +171,10 @@ class PreNeighbourVerificationViewModel(private val context: Context, val bindin
             val model = GetFiRequestPreNeighboutVerificationDto()
             model.setNeighbour1Name(neighbour1Name.get().toString())
             model.setNeighbour2Name(neighbour2Name.get().toString())
-            model.setNeighbour1Mobile(neighbour1Mobile.get().toString())
-            model.setNeighbour2Mobile(neighbour2Mobile.get().toString())
+            model.setNeighbour1Status(isNeighbourStatus1ReconisedText.value.toString())
+            model.setNeighbour2Status(isNeighbourStatus1ReconisedText.value.toString())
             model.setNeighbour1Remark(neighbour1Remark.get().toString())
             model.setNeighbour2Remark(neighbour2Remark.get().toString())
-            model.setReason(reason.get().toString())
-            model.setIsNeighbourRecognised(isNeighbourReconisedText.value)
             preNeighbourMutableLiveData.value = model
             savePreNeighbourData(model)
         }
@@ -137,12 +186,10 @@ class PreNeighbourVerificationViewModel(private val context: Context, val bindin
             params["firequestId"] = AppConstants.verificationId.toString()
             params["neighbour1Name"] = model.getNeighbour1Name().toString()
             params["neighbour2Name"] = model.getNeighbour2Name().toString()
-            params["neighbour1Mobile"] = model.getNeighbour1Mobile().toString()
-            params["neighbour2Mobile"] = model.getNeighbour2Mobile().toString()
+            params["Neighbour1Status"] = model.getNeighbour1Status().toString()
+            params["Neighbour2Status"] = model.getNeighbour2Status().toString()
             params["neighbour1Remark"] = model.getNeighbour1Remark().toString()
             params["neighbour2Remark"] = model.getNeighbour2Remark().toString()
-            params["isNeighbourRecognised"] = isNeighbourReconisedText.value.toString()
-            params["reason"] = reason.get().toString()
 
 
             if (Utility.isNetworkConnected(context)) {

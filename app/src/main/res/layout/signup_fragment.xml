@@ -28,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_80ssp"
                 android:layout_marginStart="-20dp"
+                android:visibility="gone"
                 android:src="@drawable/icon_top_left_leaf">
             </ImageView>
 
@@ -37,6 +38,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="-20dp"
                 android:contentDescription="TODO"
+                android:visibility="gone"
                 android:src="@drawable/icon_top_right_leaf">
             </ImageView>
 
@@ -87,18 +89,32 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvSignupLabel" />
 
+
+            <TextView
+                android:id="@+id/txtEmployeeCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/employeecode"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginTop="@dimen/_30ssp"
+                app:layout_constraintTop_toBottomOf="@+id/tvSignupLabelContinue"
+                android:textSize="@dimen/_10ssp">
+            </TextView>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inpEmail"
                 style="@style/TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 app:hintTextColor="@color/black"
                 app:passwordToggleEnabled="false"
-                app:layout_constraintBottom_toTopOf="@id/inpPwd"
+                app:hintEnabled="false"
+                app:layout_constraintBottom_toTopOf="@id/txtRemark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSignupLabelContinue"
+                app:layout_constraintTop_toBottomOf="@+id/txtEmployeeCode"
                 tools:ignore="MissingConstraints">
 
                 <com.pms.rcuapp.widget.TypefaceEditText
@@ -121,27 +137,39 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/txtRemark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/remark"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/roboto_regular"
+                app:layout_constraintTop_toBottomOf="@+id/inpEmail"
+                android:textSize="@dimen/_10ssp">
+            </TextView>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inpPwd"
                 style="@style/TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
                 app:hintTextColor="@color/black"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:passwordToggleEnabled="true"
-                app:layout_constraintTop_toBottomOf="@+id/inpEmail"
+                app:passwordToggleEnabled="false"
+                app:hintEnabled="false"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintTop_toBottomOf="@+id/txtRemark"
                 tools:ignore="MissingConstraints">
 
                 <com.pms.rcuapp.widget.TypefaceEditText
                     android:id="@+id/edtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_size"
-                    android:hint="@string/password"
-                    android:inputType="textPassword"
+                    android:hint="@string/remark"
+                    android:inputType="text"
                     android:gravity="center_vertical"
                     android:imeOptions="actionDone"
                     android:maxLength="50"
@@ -194,6 +222,7 @@
                 android:src="@drawable/icon_bottom_leaf"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="@dimen/_100ssp"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/txtRedirectToLogin"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints,UnknownId">
