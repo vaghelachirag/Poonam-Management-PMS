@@ -40,7 +40,7 @@
                 android:src="@drawable/icon_top_right_leaf">
             </ImageView>
 
-            <ImageView
+            <com.pms.rcuapp.widget.CircularImageView
                 android:id="@+id/iv_Logo"
                 android:layout_width="@dimen/_60ssp"
                 android:layout_height="@dimen/_60ssp"
@@ -48,7 +48,7 @@
                 android:layout_marginTop="@dimen/_30ssp"
                 android:contentDescription="TODO"
                 android:src="@drawable/icon_main">
-            </ImageView>
+            </com.pms.rcuapp.widget.CircularImageView>
 
         </RelativeLayout>
 

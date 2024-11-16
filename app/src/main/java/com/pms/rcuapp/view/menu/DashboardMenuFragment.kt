@@ -37,6 +37,9 @@ class DashboardMenuFragment: BaseFragment()  {
             else if (!isLoading && isAdded) hideProgressbar()
         }
 
+        binding.refreshLayout.setOnRefreshListener {
+            dashboardMenuViewModel.getDashboardMenu()
+        }
 
         return binding.root
     }
