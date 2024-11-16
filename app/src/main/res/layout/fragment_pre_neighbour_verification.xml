@@ -78,28 +78,32 @@
                             android:textSize="@dimen/verificationDetailTextSize"
                             app:custom_font="@string/app_font_regular" />
                     </com.google.android.material.textfield.TextInputLayout>
+
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/inpNeighbour1Mobile"
-                        style="@style/TextInputLayout"
+                        android:id="@+id/inpNeighbour1Status"
+                        style="@style/TextInputExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         app:hintTextColor="@color/main_bg"
+                        android:hint="@string/neighbour1Status"
                         app:layout_constraintTop_toBottomOf="@+id/inpNeighbour1Name"
                         tools:ignore="MissingClass,MissingConstraints">
 
-                        <com.pms.rcuapp.widget.TypefaceEditText
-                            android:id="@+id/edt_Neighbour1Mobile"
+                        <com.pms.rcuapp.widget.InstantAutoComplete
+                            android:id="@+id/spnNeighbour1Status"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_size"
-                            android:hint="@string/neighbour1Mobile"
-                            android:imeOptions="actionNext"
-                            android:inputType="number"
-                            android:text="@={viewModel.neighbour1Mobile}"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusableInTouchMode="false"
+                            android:entries="@array/addresses_array"
+                            android:focusable="false"
                             android:textColor="@color/black"
                             android:textColorHint="@color/gray_323232"
                             android:textSize="@dimen/verificationDetailTextSize"
                             app:custom_font="@string/app_font_regular" />
+
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -107,10 +111,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/TextInputLayout"
-                        app:layout_constraintTop_toBottomOf="@+id/inpNeighbour1Mobile"
+                        app:layout_constraintTop_toBottomOf="@+id/inpNeighbour1Status"
                         android:layout_marginTop="@dimen/_5sdp"
                         app:hintTextColor="@color/main_bg"
                         app:passwordToggleEnabled="false"
+                        android:visibility="visible"
                         tools:ignore="MissingClass,MissingConstraints">
 
                         <com.pms.rcuapp.widget.TypefaceEditText
@@ -166,82 +171,18 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/inpNeighbour2Mobile"
+                        android:id="@+id/inpNeighbour2Status"
+                        style="@style/TextInputExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/TextInputLayout"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginTop="5dp"
                         app:hintTextColor="@color/main_bg"
-                        app:passwordToggleEnabled="false"
+                        android:hint="@string/neighbour2Status"
                         app:layout_constraintTop_toBottomOf="@+id/inpNeighbour2Name"
                         tools:ignore="MissingClass,MissingConstraints">
 
-                        <com.pms.rcuapp.widget.TypefaceEditText
-                            android:id="@+id/edt_Neighbour2Mobile"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/edit_text_size"
-                            android:hint="@string/neighbour2Mobile"
-                            android:imeOptions="actionNext"
-                            android:inputType="number"
-                            android:text="@={viewModel.neighbour2Mobile}"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/gray_323232"
-                            android:textSize="@dimen/verificationDetailTextSize"
-                            app:custom_font="@string/app_font_regular" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/inpNeighbour2Remark"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="@style/TextInputLayout"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        app:hintTextColor="@color/main_bg"
-                        app:passwordToggleEnabled="false"
-                        app:layout_constraintTop_toBottomOf="@+id/inpNeighbour2Mobile"
-                        tools:ignore="MissingClass,MissingConstraints">
-
-                        <com.pms.rcuapp.widget.TypefaceEditText
-                            android:id="@+id/edt_Neighbour2Remark"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/edit_text_size"
-                            android:hint="@string/neighbour2Remark"
-                            android:imeOptions="actionDone"
-                            android:inputType="text"
-                            android:text="@={viewModel.neighbour2Remark}"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/gray_323232"
-                            android:textSize="@dimen/verificationDetailTextSize"
-                            app:custom_font="@string/app_font_regular" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.pms.rcuapp.widget.HeaderText
-                        android:id="@+id/txt_NeibourRecognised"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="28dp"
-                        android:text="@string/neighbourreconised"
-                        android:textSize="@dimen/_12sdp"
-                        app:layout_constraintTop_toBottomOf="@+id/inpNeighbour2Remark"
-                        tools:layout_editor_absoluteX="0dp">
-
-                    </com.pms.rcuapp.widget.HeaderText>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/TextInputExposedDropdownMenu"
-                        android:id="@+id/inspnNeighbourReconised"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_NeibourRecognised"
-                        app:hintTextColor="@color/main_bg"
-                        android:textColorHint="@color/main_bg"
-                        android:hint="@string/neighbourreconised">
-
                         <com.pms.rcuapp.widget.InstantAutoComplete
-                            android:id="@+id/spnNeighbourReconised"
+                            android:id="@+id/spnNeighbour2Status"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_size"
                             android:clickable="true"
@@ -258,23 +199,25 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/inpReason"
-                        style="@style/TextInputLayout"
+                        android:id="@+id/inpNeighbour2Remark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        style="@style/TextInputLayout"
+                        android:layout_marginTop="@dimen/_5sdp"
                         app:hintTextColor="@color/main_bg"
-                        app:layout_constraintTop_toBottomOf="@+id/inspnNeighbourReconised"
+                        app:passwordToggleEnabled="false"
+                        android:visibility="visible"
+                        app:layout_constraintTop_toBottomOf="@+id/inpNeighbour2Status"
                         tools:ignore="MissingClass,MissingConstraints">
 
                         <com.pms.rcuapp.widget.TypefaceEditText
-                            android:id="@+id/edt_Reason"
+                            android:id="@+id/edt_Neighbour2Remark"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_size"
-                            android:hint="@string/notRecoginsedReason"
+                            android:hint="@string/neighbour2Remark"
                             android:imeOptions="actionDone"
                             android:inputType="text"
-                            android:text="@={viewModel.reason}"
+                            android:text="@={viewModel.neighbour2Remark}"
                             android:textColor="@color/black"
                             android:textColorHint="@color/gray_323232"
                             android:textSize="@dimen/verificationDetailTextSize"
@@ -294,7 +237,7 @@
                         app:backgroundTint="@null"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/inpReason" />
+                        app:layout_constraintTop_toBottomOf="@+id/inpNeighbour2Remark" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

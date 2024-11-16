@@ -47,9 +47,10 @@ class PreNeighbourVerificationViewModel(private val context: Context, val bindin
     @SuppressLint("SuspiciousIndentation")
     fun init(context: Context?) {
 
-        val materialStatusList =  context!!.resources.getStringArray(R.array.neighbourrecognised_array)
-        neighbourRecognisedList = materialStatusList.asList()
-        binding.spnNeighbourReconised.setListAdapter(neighbourRecognisedList)
+        val neighbourStatusList =  context!!.resources.getStringArray(R.array.neighbourstatus_array)
+        neighbourRecognisedList = neighbourStatusList.asList()
+        binding.spnNeighbour1Status.setListAdapter(neighbourRecognisedList)
+        binding.spnNeighbour2Status.setListAdapter(neighbourRecognisedList)
 
         isNeighbourReconised.value = false
         isNeighbourReconisedText.value = ""
@@ -67,7 +68,7 @@ class PreNeighbourVerificationViewModel(private val context: Context, val bindin
             isNeighbourReconised.value = ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getIsNeighbourRecognised().toString() != "false"
         }
 
-        binding.spnNeighbourReconised.addTextChangedListener(object : TextWatcher {
+        binding.spnNeighbour1Status.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (!s.isNullOrBlank()){
                     isNeighbourReconised.value = !(s.toString() == "No" || s.toString() == "Denied")
@@ -82,7 +83,7 @@ class PreNeighbourVerificationViewModel(private val context: Context, val bindin
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
         })
-        binding.spnNeighbourReconised.setText(Utility.getNullToBlankString(ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getIsNeighbourRecognised().toString()))
+        binding.spnNeighbour1Status.setText(Utility.getNullToBlankString(ActivityDetail.selectedData!!.getFirequestPreNeighboutVerificationDto()!!.getIsNeighbourRecognised().toString()))
     }
 
     // On Saved Clicked
@@ -112,7 +113,7 @@ class PreNeighbourVerificationViewModel(private val context: Context, val bindin
                 binding.constraintLayout
             )
         } else*/
-        if (binding.spnNeighbourReconised.text.isNullOrEmpty()) {
+        if (binding.spnNeighbour1Status.text.isNullOrEmpty()) {
             Utils().showSnackBar(context, "Please Select Reason", binding.constraintLayout)
         }
         else {

@@ -60,7 +60,7 @@ class FragmentPreNeighbourVerification : BaseFragment(), FragmentLifecycleInterf
             else if (!isLoading && isAdded) hideProgressbar()
         }
 
-        preNeighbourVerificationViewModel.isNeighbourReconised.observeForever {
+       /* preNeighbourVerificationViewModel.isNeighbourReconised.observeForever {
             if (it){
                 binding.inpReason.visibility = View.GONE
                 binding.edtReason.setText("")
@@ -68,7 +68,7 @@ class FragmentPreNeighbourVerification : BaseFragment(), FragmentLifecycleInterf
             else{
                 binding.inpReason.visibility = View.VISIBLE
             }
-        }
+        }*/
         setView()
         return binding.root
     }

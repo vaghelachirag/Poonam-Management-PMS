@@ -102,7 +102,7 @@
                 <com.pms.rcuapp.widget.TypefaceEditText
                     android:id="@+id/edt_EmailAddress"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_size"
+                    android:layout_height="wrap_content"
                     android:hint="@string/employeecode"
                     android:text="@={viewModel.email}"
                     android:gravity="center_vertical"

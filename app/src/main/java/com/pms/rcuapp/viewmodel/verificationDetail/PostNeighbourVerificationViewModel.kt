@@ -43,7 +43,7 @@ class PostNeighbourVerificationViewModel(private val context: Context, private v
 
     fun init(context: Context?) {
 
-        val materialStatusList =  context!!.resources.getStringArray(R.array.neighbourrecognised_array)
+        val materialStatusList =  context!!.resources.getStringArray(R.array.neighbourstatus_array)
         neighbourRecognisedList = materialStatusList.asList()
 
         isNeighbourReconised.value = false
@@ -95,7 +95,7 @@ class PostNeighbourVerificationViewModel(private val context: Context, private v
 
     private fun setSelectedNeighbourRecognized(isText: String) {
         val pos =
-            context.resources.getStringArray(R.array.neighbourrecognised_array).indexOf(isText)
+            context.resources.getStringArray(R.array.neighbourstatus_array).indexOf(isText)
         if (pos >= 0) {
             selectedItemPosition = pos
         }
