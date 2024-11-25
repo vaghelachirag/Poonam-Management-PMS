@@ -49,6 +49,10 @@ class GetLoginDataModel {
     @Expose
     private var isPasswordChangeRequired: Boolean? = null
 
+    @SerializedName("doDontUrl")
+    @Expose
+    private var doDontUrl: String? = null
+
     fun getUserId(): Int? {
         return userId
     }
@@ -127,6 +131,14 @@ class GetLoginDataModel {
 
     fun setIsPasswordChangeRequired(isPasswordChangeRequired: Boolean?) {
         this.isPasswordChangeRequired = isPasswordChangeRequired
+    }
+
+    fun getDoDontUrl(): String? {
+        return doDontUrl
+    }
+
+    fun setDoDontUrl(doDontUrl: String?) {
+        this.doDontUrl = doDontUrl
     }
 
 }

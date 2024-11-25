@@ -1,6 +1,7 @@
 package com.pms.rcuapp.viewmodel
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -17,12 +18,14 @@ import com.pms.rcuapp.R
 import com.pms.rcuapp.databinding.LoginscreenBinding
 import com.pms.rcuapp.model.LoginModel
 import com.pms.rcuapp.model.base.BaseViewModel
+import com.pms.rcuapp.model.login.GetLoginDataModel
 import com.pms.rcuapp.model.login.GetLoginResponseModel
 import com.pms.rcuapp.network.CallbackObserver
 import com.pms.rcuapp.network.Networking
 import com.pms.rcuapp.uttils.Session
 import com.pms.rcuapp.uttils.Utility
 import com.pms.rcuapp.view.LoginFragment
+import com.pms.rcuapp.view.dialougs.DoAndDoNotDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -115,12 +118,17 @@ class LoginViewModel(
                         Log.e("Status",t.getStatusCode().toString())
                         isLoading.postValue(false)
                         if(t.getStatusCode() == 200){
+                            if(t.getData() !=null){
+                                checkDODontUrl(t.getData()!!)
+                            }
+/*
+                            Log.e("Url", t.getData()!!.getDoDontUrl().toString())
                             var session = Session(context)
                             session.isLoggedIn = true
                             session.user = t.getData()
                             t.getData()!!.getProfilePicture()?.let { session.storeUserProfileImageKey(it) }
                             t.getData()!!.getName()?.let { session.storeUserNameKey(it) }
-                            redirectToHome()
+                            redirectToHome()*/
                         }else{
                           //  Utils().showToast(context,t.getMessage().toString())
                             Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
@@ -133,6 +141,36 @@ class LoginViewModel(
             Utils().showToast(context,context.getString(R.string.nointernetconnection).toString())
         }
     }
+
+    private fun checkDODontUrl(data: GetLoginDataModel) {
+        if (data.getDoDontUrl().isNullOrEmpty()){
+            var session = Session(context)
+            session.isLoggedIn = true
+            session.user = data
+            data.getProfilePicture()?.let { session.storeUserProfileImageKey(it) }
+            data.getName()?.let { session.storeUserNameKey(it) }
+            redirectToHome()
+        }else{
+            openDoDoNotDialog(data,data.getDoDontUrl())
+        }
+    }
+
+    // Do Do not Dialog
+    private fun openDoDoNotDialog(t: GetLoginDataModel, doDontUrl: String?) {
+        DoAndDoNotDialog(context as Activity, doDontUrl.toString())
+            .setListener(object : DoAndDoNotDialog.OkButtonListener {
+                override fun onOkPressed(doNotDialog: DoAndDoNotDialog) {
+                     Log.e("Accept","Accept")
+                          doNotDialog.dismiss()
+                            var session = Session(context)
+                            session.isLoggedIn = true
+                            session.user = t
+                            t.getProfilePicture()?.let { session.storeUserProfileImageKey(it) }
+                            t.getName()?.let { session.storeUserNameKey(it) }
+                            redirectToHome()
+                }
+            })
+            .show()    }
 
 
     /** Returns the consumer friendly device name  */

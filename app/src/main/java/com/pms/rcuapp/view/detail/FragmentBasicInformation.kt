@@ -2,6 +2,8 @@ package com.pms.rcuapp.view.detail
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -60,6 +62,13 @@ class FragmentBasicInformation  : BaseFragment(), FragmentLifecycleInterface {
         }
         binding.btnReject.setOnClickListener {
             basicInformationModel.showAcceptRejectDialoug(false)
+        }
+        binding.txtBasicAddress.setOnClickListener {
+            if(!binding.txtBasicAddress.text.toString().isNullOrEmpty()){
+                val map = "http://maps.google.co.in/maps?q=$"+ binding.txtBasicAddress.text.toString()
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(map))
+                startActivity(intent)
+            }
         }
     }
 

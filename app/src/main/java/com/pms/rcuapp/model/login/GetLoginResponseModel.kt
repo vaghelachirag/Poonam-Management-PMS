@@ -31,6 +31,7 @@ class GetLoginResponseModel {
     @Expose
     private var textData: Any? = null
 
+
     fun getStatusCode(): Int? {
         return statusCode
     }

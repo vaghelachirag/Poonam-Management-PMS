@@ -32,6 +32,21 @@ class GetVerificationDetailData {
     @Expose
     private var caseId: String? = null
 
+
+    @SerializedName("tat")
+    @Expose
+    private var tat: String? = null
+
+
+    @SerializedName("tatfrequency")
+    @Expose
+    private var tatfrequency: String? = null
+
+
+    @SerializedName("appointmentSchedule")
+    @Expose
+    private var appointmentSchedule: String? = null
+
     @SerializedName("caseDate")
     @Expose
     private var caseDate: String? = null
@@ -52,9 +67,6 @@ class GetVerificationDetailData {
     @Expose
     private var subLoanProduct: String? = null
 
-    @SerializedName("assetName")
-    @Expose
-    private var assetName: Any? = null
 
     @SerializedName("distanceType")
     @Expose
@@ -144,6 +156,10 @@ class GetVerificationDetailData {
     @Expose
     private var triggerRemarks: Any? = null
 
+    @SerializedName("remarks")
+    @Expose
+    private var remarks: Any? = null
+
     @SerializedName("createBy")
     @Expose
     private var createBy: Int? = null
@@ -231,6 +247,11 @@ class GetVerificationDetailData {
     @SerializedName("loanProductName")
     @Expose
     private var loanProductName: String? = null
+
+    @SerializedName("assetName")
+    @Expose
+    private var assetName: String? = null
+
 
     @SerializedName("fistatus")
     @Expose
@@ -400,9 +421,14 @@ class GetVerificationDetailData {
     @Expose
     private var firequestVerificationDocuments: List<GetFiVerificationDocument>? = null
 
+
+    @SerializedName("reportingManagers")
+    @Expose
+    private var reportingManagers: ArrayList<GetReportingManager>? = null
+
     @SerializedName("allocators")
     @Expose
-    private var allocators: Any? = null
+    private var allocators: List<GetAllocator>? = null
 
     @SerializedName("firequestPreNeighboutVerificationDto")
     @Expose
@@ -518,6 +544,24 @@ class GetVerificationDetailData {
         this.caseId = caseId
     }
 
+    fun getTat(): String? {
+        return tat
+    }
+
+    fun getTatFrequency(): String? {
+        return tatfrequency
+    }
+
+    fun getAppointmentSchedule(): String? {
+        return appointmentSchedule
+    }
+
+
+    fun getReportingManagers(): ArrayList<GetReportingManager>? {
+        return reportingManagers
+    }
+    
+
     fun getCaseDate(): String? {
         return caseDate
     }
@@ -560,10 +604,6 @@ class GetVerificationDetailData {
 
     fun getAssetName(): Any? {
         return assetName
-    }
-
-    fun setAssetName(assetName: Any?) {
-        this.assetName = assetName
     }
 
     fun getDistanceType(): String? {
@@ -737,6 +777,12 @@ class GetVerificationDetailData {
     fun getTriggerRemarks(): Any? {
         return triggerRemarks
     }
+
+
+    fun getRemarks(): Any? {
+        return remarks
+    }
+
 
     fun setTriggerRemarks(triggerRemarks: Any?) {
         this.triggerRemarks = triggerRemarks
@@ -1256,10 +1302,6 @@ class GetVerificationDetailData {
 
     fun getAllocators(): Any? {
         return allocators
-    }
-
-    fun setAllocators(allocators: Any?) {
-        this.allocators = allocators
     }
 
     fun getFirequestPreNeighboutVerificationDto(): GetFiRequestPreNeighboutVerificationDto? {

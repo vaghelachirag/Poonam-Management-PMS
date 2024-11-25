@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil
 import com.pms.rcuapp.R
 import com.pms.rcuapp.databinding.DialogAddInventorySubitemBinding
 
-
+//
 class AcceptRejectFIDialog(private var mContext: Context, private val acceptReasonList: List<String>, val isAcceptReject: Boolean) : Dialog(mContext, R.style.DialogTheme) {
 
     private lateinit var binding: DialogAddInventorySubitemBinding

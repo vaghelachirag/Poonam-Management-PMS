@@ -55,32 +55,12 @@
                                 tools:ignore="MissingConstraints"></com.pms.rcuapp.widget.HeaderText>
 
 
-                            <com.google.android.material.textfield.TextInputLayout
-                                style="@style/TextInputExposedDropdownMenu"
-                                android:id="@+id/spnAcceptReject"
+                            <WebView
+                                android:id="@+id/webView"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:hintTextColor="@color/main_bg"
-                                android:layout_marginTop="44dp"
-                                android:textColorHint="@color/main_bg"
-                                app:layout_constraintTop_toBottomOf="@+id/txt_Header"
-                                android:hint="Select Reason">
-
-                                <com.pms.rcuapp.widget.InstantAutoComplete
-                                    android:id="@+id/spnAcceptRejectSelection"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:clickable="true"
-                                    android:cursorVisible="false"
-                                    android:focusableInTouchMode="false"
-                                    android:entries="@array/addresses_array"
-                                    android:focusable="false"
-                                    android:textColor="@color/black"
-                                    android:textColorHint="@color/gray_323232"
-                                    android:textSize="@dimen/verificationDetailTextSize"
-                                    app:custom_font="@string/app_font_regular" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
+                                android:layout_height="@dimen/_300sdp"
+                                tools:layout_editor_absoluteX="13dp"
+                                tools:layout_editor_absoluteY="4dp" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnSave"
@@ -90,11 +70,11 @@
                                 android:layout_marginRight="@dimen/_50sdp"
                                 android:layout_marginBottom="@dimen/_20sdp"
                                 android:visibility="visible"
-                                android:text="Submit"
+                                android:text="Accept"
                                 app:backgroundTint="@null"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/spnAcceptReject" />
+                                app:layout_constraintTop_toBottomOf="@+id/webView" />
 
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -110,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top|right"
                     android:clickable="true"
+                    android:visibility="gone"
                     android:backgroundTint="@color/mango_pickford"
                     android:src="@drawable/ic_close"
                     app:tint="@color/mango_pickford" />
