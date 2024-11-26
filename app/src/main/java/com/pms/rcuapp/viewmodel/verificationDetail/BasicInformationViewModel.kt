@@ -129,6 +129,7 @@ class BasicInformationViewModel(private val context: Context, val binding: Fragm
     }
 
     private fun setRelationEmployeeAdapter() {
+        if (Ac)
         relationWithEmployeeList =  ActivityDetail.selectedData!!.getReportingManagers()
         relationEmployeeAdapter =  RelationEmployeeAdapter(context,relationWithEmployeeList!!, this, object :
             OnItemSelected<GetReportEmployee> {
@@ -144,7 +145,6 @@ class BasicInformationViewModel(private val context: Context, val binding: Fragm
 
     private fun setAction() {
 
-       Log.e("FiStatus", ActivityDetail.selectedData!!.getStatus().toString())
 
         if (!ActivityDetail.selectedData!!.getStatus().isNullOrEmpty()){
             if (ActivityDetail.selectedData!!.getStatus()!!.equals("REJECTED")){

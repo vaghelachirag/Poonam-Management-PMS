@@ -1087,9 +1087,21 @@
                         android:paddingTop="6dp"
                         android:visibility="visible"
                         android:paddingBottom="6dp"
-                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/item_document" />
+
+                    <com.pms.rcuapp.widget.SmallText
+                        android:id="@+id/reportingManager"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingStart="@dimen/_5ssp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="@string/reportingManager"
+                        tools:ignore="MissingConstraints,RtlSymmetry">
+
+                    </com.pms.rcuapp.widget.SmallText>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvDashboard"
                         android:layout_width="match_parent"

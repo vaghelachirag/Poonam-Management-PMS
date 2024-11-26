@@ -27,8 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
-        android:layout_marginRight="10sp"
-        android:layout_marginLeft="10sp"
+        android:layout_marginRight="@dimen/_5ssp"
+        android:layout_marginLeft="@dimen/_5ssp"
         android:layout_marginTop="@dimen/_5sdp"
         app:cardBackgroundColor="@color/white"
         card_view:cardUseCompatPadding="true">
