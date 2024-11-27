@@ -1,5 +1,6 @@
 package com.pms.rcuapp.view.dialougs
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -27,6 +28,7 @@ class DoAndDoNotDialog(private var mContext: Context, private val url: String) :
 
     private var acceptRejectListSpinnerAdapter: ArrayAdapter<String?>? = null
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
@@ -45,7 +47,6 @@ class DoAndDoNotDialog(private var mContext: Context, private val url: String) :
         lp.copyFrom(window!!.attributes)
         lp.width = WindowManager.LayoutParams.MATCH_PARENT
         lp.height = WindowManager.LayoutParams.MATCH_PARENT
-        lp.gravity = Gravity.CENTER
 
 
         window!!.setBackgroundDrawableResource(R.color.dialoug_main_bg);

@@ -129,7 +129,6 @@ class BasicInformationViewModel(private val context: Context, val binding: Fragm
     }
 
     private fun setRelationEmployeeAdapter() {
-        if (Ac)
         relationWithEmployeeList =  ActivityDetail.selectedData!!.getReportingManagers()
         relationEmployeeAdapter =  RelationEmployeeAdapter(context,relationWithEmployeeList!!, this, object :
             OnItemSelected<GetReportEmployee> {
@@ -153,11 +152,11 @@ class BasicInformationViewModel(private val context: Context, val binding: Fragm
             }
         }
 
-        binding.txtBackendNameHeader.setOnClickListener {
+     /*   binding.txtBackendNameHeader.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL)
             intent.setData(Uri.parse("tel:"+ ActivityDetail.selectedData!!.getBackendMobileNo()))
             context.startActivity(intent)
-        }
+        }*/
 
         binding.txtBasicMobileNumber.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL)

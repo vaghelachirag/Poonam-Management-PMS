@@ -97,6 +97,8 @@
         <item name="android:windowExitAnimation">@anim/slide_down</item>
     </style>
 
+
+
     <style name="RadioButton" parent="AppTheme">
         <item name="colorControlActivated">@color/main_bg</item>
         <item name="colorControlNormal">@color/gray_616161</item>

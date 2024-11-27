@@ -43,11 +43,11 @@ class RelationEmployeeAdapter(
         holder.bind(list[position])
 
         holder.binding.txtApplicateName.text = list[position].getEmployee()!!.getName()
-        holder.binding.txtApplicateMobileNumber.text = list[position].getEmployee()!!.getMobileNo()
+        holder.binding.txtApplicateMobileNumber.text = list[position].getEmployee()!!.getOfficialMobile()
 
         holder.binding.txtApplicateMobileNumber.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL)
-            intent.setData(Uri.parse("tel:"+ list[position].getEmployee()!!.getMobileNo()))
+            intent.setData(Uri.parse("tel:"+ list[position].getEmployee()!!.getOfficialMobile()))
             context.startActivity(intent)
         }
 

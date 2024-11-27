@@ -970,55 +970,6 @@
                                         android:text="@={viewModel.remark}"
                                         android:textColor="@color/gray_323232"
                                         android:textAppearance="?android:attr/textAppearanceMedium" />
-
-
-
-                                </TableRow>
-
-                                <TableRow
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@android:color/darker_gray" >
-
-                                    <com.pms.rcuapp.widget.SmallText
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginStart="1dp"
-                                        android:layout_marginTop="1dp"
-                                        android:layout_marginBottom="1dp"
-                                        android:layout_weight="100"
-                                       android:background="@color/white"
-                                        android:gravity="center_vertical"
-                                        android:layout_gravity="center_vertical"
-                                        android:paddingStart="@dimen/_8sdp"
-                                        android:paddingBottom="@dimen/table_padding"
-                                        android:paddingTop="@dimen/table_padding"
-                                        android:text="@string/backendname"
-                                        android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:textColor="@color/black"
-                                        android:textSize="@dimen/_12sdp"
-                                        tools:ignore="RtlSymmetry" />
-
-                                    <com.pms.rcuapp.widget.SmallText
-                                        android:id="@+id/txtBackendNameHeader"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginBottom="1dp"
-                                        android:layout_marginLeft="1dp"
-                                        android:layout_marginTop="1dp"
-                                        android:layout_marginRight="1dp"
-                                        android:layout_weight="6"
-                                        android:background="@color/white"
-                                        android:gravity="start"
-                                        android:textSize="@dimen/_12sdp"
-                                        android:paddingEnd="@dimen/_2sdp"
-                                        android:paddingStart="@dimen/_8sdp"
-                                        android:paddingBottom="@dimen/table_padding"
-                                        android:paddingTop="@dimen/table_padding"
-                                        android:textColor="@color/colorPrimary"
-                                        android:text="@={viewModel.backendName}"
-                                        android:textAppearance="?android:attr/textAppearanceMedium" />
-
                                 </TableRow>
 
                                 <TableRow

@@ -126,7 +126,7 @@ open class ActivityDetail  : BaseActivity()  {
     }
 
 
-    fun setStatePageAdapter() {
+    private fun setStatePageAdapter() {
 
         viewPagerAdapter!!.addFragment(FragmentBasicInformation.newInstance(selectedData), "Basic Information")
 

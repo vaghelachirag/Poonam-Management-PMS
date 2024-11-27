@@ -54,11 +54,11 @@ class WebViewFragment: BaseFragment() {
         webSettings.allowContentAccess = true;
 
         webSettings.domStorageEnabled = true
+
         //        webSettings.setAppCacheEnabled(false);
         webSettings.loadsImagesAutomatically = true
         webSettings.useWideViewPort = false
         webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-
 
         Log.e("MenuId",menuId)
 
