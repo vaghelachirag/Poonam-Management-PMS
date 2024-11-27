@@ -1050,6 +1050,7 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp"
                         android:text="@string/reportingManager"
+                        android:visibility="gone"
                         tools:ignore="MissingConstraints,RtlSymmetry">
 
                     </com.pms.rcuapp.widget.SmallText>
@@ -1063,6 +1064,33 @@
                         android:paddingTop="6dp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/item_reportingmanager" />
+
+
+                    <com.pms.rcuapp.widget.SmallText
+                        android:id="@+id/reportingAllocator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingStart="@dimen/_5ssp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textSize="@dimen/_12ssp"
+                        android:visibility="gone"
+                        android:text="@string/reportingAllocator"
+                        tools:ignore="MissingConstraints,RtlSymmetry">
+
+                    </com.pms.rcuapp.widget.SmallText>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvAllocatorList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:fadeScrollbars="false"
+                        android:overScrollMode="never"
+                        android:paddingTop="6dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_reportingallocator" />
 
                     <LinearLayout
                         android:id="@+id/ll_AcceptReject"

@@ -14,6 +14,7 @@ import com.pms.rcuapp.databinding.FragmentBasicInformationBinding
 import com.pms.rcuapp.interfaces.OnItemSelected
 import com.pms.rcuapp.model.base.BaseViewModel
 import com.pms.rcuapp.model.getAcceptRejectResponse.GetAcceptRejectResponse
+import com.pms.rcuapp.model.getverificationDetailResponse.GetAllocator
 import com.pms.rcuapp.model.getverificationDetailResponse.GetReportEmployee
 import com.pms.rcuapp.model.getverificationDetailResponse.GetReportingManager
 import com.pms.rcuapp.model.getverificationDetailResponse.GetVerificationDocument
@@ -28,6 +29,7 @@ import com.pms.rcuapp.uttils.Utils
 import com.pms.rcuapp.view.adapter.DashboardAdapter
 import com.pms.rcuapp.view.adapter.DocumentAdapter
 import com.pms.rcuapp.view.adapter.RelationEmployeeAdapter
+import com.pms.rcuapp.view.adapter.ReportingAllocatorAdapter
 import com.pms.rcuapp.view.detail.ActivityDetail
 import com.pms.rcuapp.view.detail.FragmentBasicInformation
 import com.pms.rcuapp.view.dialougs.AcceptRejectFIDialog
@@ -49,8 +51,8 @@ class BasicInformationViewModel(private val context: Context, val binding: Fragm
     var bankName : ObservableField<String> = ObservableField()
     var verificationFor : ObservableField<String> = ObservableField()
     var verificationType : ObservableField<String> = ObservableField()
-    var applicant : ObservableField<String> = ObservableField()
-    var coapplicant : ObservableField<String> = ObservableField()
+    private var applicant : ObservableField<String> = ObservableField()
+    private var coapplicant : ObservableField<String> = ObservableField()
     var addressFor : ObservableField<String> = ObservableField()
     var applicantMobileNumber : ObservableField<String> = ObservableField()
     var applicantfathername : ObservableField<String> = ObservableField()
@@ -61,18 +63,20 @@ class BasicInformationViewModel(private val context: Context, val binding: Fragm
     var loanAmount : ObservableField<String> = ObservableField()
     var triggers : ObservableField<String> = ObservableField()
     var remark : ObservableField<String> = ObservableField()
-    var backendName : ObservableField<String> = ObservableField()
+    private var backendName : ObservableField<String> = ObservableField()
     var assignDt : ObservableField<String> = ObservableField()
 
 
     private var masterDataDao: MasterDataDao? = null
 
-    var acceptReasonList: MutableList<String>? = null
-    var rejectReasonList: MutableList<String>? = null
+    private var acceptReasonList: MutableList<String>? = null
+    private var rejectReasonList: MutableList<String>? = null
 
     private var verificationDocumentAdapter: DocumentAdapter? = null
     private var relationEmployeeAdapter: RelationEmployeeAdapter? = null
     private var relationWithEmployeeList: ArrayList<GetReportingManager>? = null
+    private var relationAllocatorList: ArrayList<GetAllocator>? = null
+    private var reportingAllocatorAdapter: ReportingAllocatorAdapter? = null
 
 
     fun init() {
@@ -129,16 +133,35 @@ class BasicInformationViewModel(private val context: Context, val binding: Fragm
     }
 
     private fun setRelationEmployeeAdapter() {
-        relationWithEmployeeList =  ActivityDetail.selectedData!!.getReportingManagers()
-        relationEmployeeAdapter =  RelationEmployeeAdapter(context,relationWithEmployeeList!!, this, object :
-            OnItemSelected<GetReportEmployee> {
-            override fun onItemSelected(t: GetReportEmployee?, position: Int) {
-                Log.e("OnItem", "OnItem$position")
 
-            }
-        })
-        binding.rvDashboard.setLayoutManager(LinearLayoutManager(context))
-        binding.rvDashboard.setAdapter(relationEmployeeAdapter)
+        if (!ActivityDetail.selectedData!!.getReportingManagers().isNullOrEmpty()){
+            binding.reportingManager.visibility = View.VISIBLE
+            relationWithEmployeeList =  ActivityDetail.selectedData!!.getReportingManagers()
+            relationEmployeeAdapter =  RelationEmployeeAdapter(context,relationWithEmployeeList!!, this, object :
+                OnItemSelected<GetReportEmployee> {
+                override fun onItemSelected(t: GetReportEmployee?, position: Int) {
+                    Log.e("OnItem", "OnItem$position")
+
+                }
+            })
+            binding.rvDashboard.setLayoutManager(LinearLayoutManager(context))
+            binding.rvDashboard.setAdapter(relationEmployeeAdapter)
+        }
+
+        if (!ActivityDetail.selectedData!!.getAllocators().isNullOrEmpty()){
+            binding.reportingAllocator.visibility = View.VISIBLE
+            relationAllocatorList =  ActivityDetail.selectedData!!.getAllocators()
+            reportingAllocatorAdapter =  ReportingAllocatorAdapter(context,relationAllocatorList!!, this, object :
+                OnItemSelected<GetReportEmployee> {
+                override fun onItemSelected(t: GetReportEmployee?, position: Int) {
+                    Log.e("OnItem", "OnItem$position")
+
+                }
+            })
+            binding.rvAllocatorList.setLayoutManager(LinearLayoutManager(context))
+            binding.rvAllocatorList.setAdapter(relationEmployeeAdapter)
+        }
+
     }
 
 

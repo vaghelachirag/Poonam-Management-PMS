@@ -185,7 +185,7 @@
     <string name="fitype">Fi Type : </string>
     <string name="totalVerification">Total Verification :</string>
     <string name="reportingManager">Reporting Manager</string>
-
+    <string name="reportingAllocator">Allocator</string>
 
     <!--  Residence Verification-->
     <string name="refNo">Ref No</string>
