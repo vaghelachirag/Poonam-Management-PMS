@@ -410,7 +410,7 @@
                                         android:layout_marginBottom="0dp"
                                         android:layout_marginRight="1dp"
                                         android:layout_weight="1"
-                                       android:background="@color/white"
+                                        android:background="@color/white"
                                         android:gravity="center_vertical"
                                         android:layout_gravity="center_vertical"
                                         android:paddingStart="@dimen/_8sdp"
@@ -519,7 +519,7 @@
                                         android:layout_marginTop="1dp"
                                         android:layout_marginBottom="0dp"
                                         android:layout_weight="100"
-                                       android:background="@color/white"
+                                        android:background="@color/white"
                                         android:gravity="center_vertical"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="@dimen/_8sdp"
@@ -539,7 +539,7 @@
                                         android:layout_marginTop="1dp"
                                         android:layout_marginRight="1dp"
                                         android:layout_weight="6"
-                                       android:background="@color/white"
+                                        android:background="@color/white"
                                         android:gravity="start"
                                         android:paddingLeft="@dimen/_8sdp"
                                         android:paddingBottom="@dimen/table_padding"
@@ -566,7 +566,7 @@
                                         android:layout_marginBottom="0dp"
                                         android:layout_marginRight="1dp"
                                         android:layout_weight="1"
-                                       android:background="@color/white"
+                                        android:background="@color/white"
                                         android:gravity="center_vertical"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="@dimen/_8sdp"
@@ -661,7 +661,7 @@
                                         android:layout_marginBottom="0dp"
                                         android:layout_marginRight="1dp"
                                         android:layout_weight="1"
-                                       android:background="@color/white"
+                                        android:background="@color/white"
                                         android:gravity="center_vertical"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="@dimen/_8sdp"
@@ -715,7 +715,7 @@
                                         android:layout_marginLeft="1dp"
                                         android:layout_marginTop="1dp"
                                         android:layout_marginBottom="0dp"
-                                       android:background="@color/white"
+                                        android:background="@color/white"
                                         android:gravity="center_vertical"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="@dimen/_8sdp"
@@ -735,7 +735,7 @@
                                         android:layout_marginTop="1dp"
                                         android:layout_column="1"
                                         android:layout_marginRight="1dp"
-                                       android:background="@color/white"
+                                        android:background="@color/white"
                                         android:gravity="center"
                                         android:textSize="@dimen/_12sdp"
                                         android:paddingRight="@dimen/_2sdp"
@@ -882,7 +882,7 @@
                                         android:layout_marginBottom="0dp"
                                         android:layout_marginRight="1dp"
                                         android:layout_weight="1"
-                                       android:background="@color/white"
+                                        android:background="@color/white"
                                         android:gravity="center_vertical"
                                         android:layout_gravity="center_vertical"
                                         android:paddingStart="@dimen/_8sdp"
@@ -1050,6 +1050,7 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp"
                         android:text="@string/reportingManager"
+                        android:visibility="gone"
                         tools:ignore="MissingConstraints,RtlSymmetry">
 
                     </com.pms.rcuapp.widget.SmallText>
@@ -1063,6 +1064,33 @@
                         android:paddingTop="6dp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/item_reportingmanager" />
+
+
+                    <com.pms.rcuapp.widget.SmallText
+                        android:id="@+id/reportingAllocator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingStart="@dimen/_5ssp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textSize="@dimen/_12ssp"
+                        android:visibility="gone"
+                        android:text="@string/reportingAllocator"
+                        tools:ignore="MissingConstraints,RtlSymmetry">
+
+                    </com.pms.rcuapp.widget.SmallText>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvAllocatorList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:fadeScrollbars="false"
+                        android:overScrollMode="never"
+                        android:paddingTop="6dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_reportingallocator" />
 
                     <LinearLayout
                         android:id="@+id/ll_AcceptReject"

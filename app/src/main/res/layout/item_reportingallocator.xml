@@ -11,11 +11,11 @@
 
         <variable
             name="itemData"
-            type="com.pms.rcuapp.model.getverificationDetailResponse.GetReportingManager" />
+            type="com.pms.rcuapp.model.getverificationDetailResponse.GetAllocator" />
 
         <variable
             name="holder"
-            type="com.pms.rcuapp.view.adapter.RelationManagerViewHolder" />
+            type="com.pms.rcuapp.view.adapter.ReportingAllocatorViewHolder" />
 
         <variable
             name="viewmodel"
@@ -97,8 +97,8 @@
                         android:textColor="@color/black2"
                         android:drawableTint="@color/black2"
                         android:drawablePadding="3sp"
-                        android:drawableStart="@drawable/icon_call"
                         android:textSize="14sp"
+                        android:drawableStart="@drawable/icon_call"
                         tools:ignore="MissingConstraints">
                     </com.pms.rcuapp.widget.HeaderText>
                     <com.pms.rcuapp.widget.SmallText

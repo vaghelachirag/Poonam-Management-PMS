@@ -50,7 +50,7 @@
                 android:layout_marginTop="@dimen/_30ssp"
                 android:layout_marginRight="@dimen/_30ssp"
                 android:contentDescription="TODO"
-                android:src="@drawable/icon_main"></com.pms.rcuapp.widget.CircularImageView>
+                android:src="@drawable/icon_main" />
 
         </RelativeLayout>
 
@@ -62,7 +62,7 @@
             android:layout_marginEnd="@dimen/_16sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="-30sp"
             app:layout_constraintTop_toBottomOf="@+id/ll_top">
 
             <com.pms.rcuapp.widget.HeaderText

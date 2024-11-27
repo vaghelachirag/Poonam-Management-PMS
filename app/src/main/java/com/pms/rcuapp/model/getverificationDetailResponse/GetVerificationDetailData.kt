@@ -428,7 +428,7 @@ class GetVerificationDetailData {
 
     @SerializedName("allocators")
     @Expose
-    private var allocators: List<GetAllocator>? = null
+    private var allocators: ArrayList<GetAllocator>? = null
 
     @SerializedName("firequestPreNeighboutVerificationDto")
     @Expose
@@ -560,7 +560,7 @@ class GetVerificationDetailData {
     fun getReportingManagers(): ArrayList<GetReportingManager>? {
         return reportingManagers
     }
-    
+
 
     fun getCaseDate(): String? {
         return caseDate
@@ -1300,7 +1300,7 @@ class GetVerificationDetailData {
         this.firequestVerificationDocuments = firequestVerificationDocuments
     }
 
-    fun getAllocators(): Any? {
+    fun getAllocators(): ArrayList<GetAllocator>? {
         return allocators
     }
 

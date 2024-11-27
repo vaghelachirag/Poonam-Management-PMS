@@ -1,28 +1,35 @@
 package com.pms.rcuapp.view.menu
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.ValueCallback
+import android.webkit.WebChromeClient
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.pms.rcuapp.R
 import com.pms.rcuapp.databinding.FragmentLoadWebUrlBinding
 import com.pms.rcuapp.view.base.BaseFragment
 import com.pms.rcuapp.viewmodel.WebViewViewModel
+import java.net.URL
 
 
 class WebViewFragment: BaseFragment() {
@@ -32,7 +39,18 @@ class WebViewFragment: BaseFragment() {
     private val webViewViewModel by lazy { WebViewViewModel(activity as Context) }
     var menuId: String = ""
 
+    private var fileUploadCallback: ValueCallback<Array<Uri>>? = null
 
+
+    private val fileUploadActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val results = result.data?.let { WebChromeClient.FileChooserParams.parseResult(result.resultCode, it) }
+            fileUploadCallback?.onReceiveValue(results)
+        } else {
+            fileUploadCallback?.onReceiveValue(null)
+        }
+        fileUploadCallback = null
+    }
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -60,6 +78,9 @@ class WebViewFragment: BaseFragment() {
         webSettings.useWideViewPort = false
         webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
 
+        webSettings.mixedContentMode = 0;
+        binding.webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+
         Log.e("MenuId",menuId)
 
         requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), callback)
@@ -73,6 +94,50 @@ class WebViewFragment: BaseFragment() {
             else if (!isLoading && isAdded) hideProgressbar()
         }
 
+        if(Build.VERSION.SDK_INT >= 21){
+            webSettings.setMixedContentMode(0);
+            binding.webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        }else if(Build.VERSION.SDK_INT >= 19){
+            binding.webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        }else if(Build.VERSION.SDK_INT < 19){
+            binding.webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        }
+
+        // Enable file upload from the WebView
+        binding.webView.webChromeClient = object : WebChromeClient() {
+            override fun onShowFileChooser(
+                webView: WebView?,
+                filePathCallback: ValueCallback<Array<Uri>>?,
+                fileChooserParams: FileChooserParams?
+            ): Boolean {
+                fileUploadCallback = filePathCallback ?: return false
+                val intent = fileChooserParams?.createIntent()
+                fileUploadActivityResultLauncher.launch(intent)
+                return true
+            }
+        }
+
+        // Set up a WebViewClient to handle page navigation and downloads
+        binding.webView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                // Handle page navigation within the WebView
+                view?.loadUrl(request?.url.toString())
+                return true
+            }
+
+            override fun shouldInterceptRequest(view: WebView?, request: WebResourceRequest?): WebResourceResponse? {
+                // Handle downloads from the WebView
+                val url = request?.url.toString()
+                if (url?.endsWith(".jpg") == true || url?.endsWith(".png") == true || url?.endsWith(".gif") == true) {
+                    val connection = URL(url).openConnection()
+                    connection.connect()
+                    val inputStream = connection.inputStream
+                    return WebResourceResponse("image/*", "UTF-8", inputStream)
+                }
+                return super.shouldInterceptRequest(view, request)
+            }
+        }
+
         binding.webView.setWebViewClient(object : WebViewClient() {
             @Deprecated("Deprecated in Java")
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
@@ -82,6 +147,7 @@ class WebViewFragment: BaseFragment() {
                     // and download file
                     return true
                 }
+
                 return false
             }
         })
