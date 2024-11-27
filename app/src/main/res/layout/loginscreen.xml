@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/main_graident">
+        android:background="@color/white">
 
         <RelativeLayout
             android:id="@+id/ll_top"
@@ -22,13 +22,14 @@
 
 
             <ImageView
-                android:id="@+id/iv_LeftIcon"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_80ssp"
-                android:visibility="gone"
-                android:layout_marginStart="-20dp"
-                android:src="@drawable/icon_top_left_leaf">
-            </ImageView>
+                android:layout_height="@dimen/_160sdp"
+                android:layout_alignParentEnd="true"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:contentDescription="TODO"
+                android:layout_marginRight="-50sp"
+                android:src="@drawable/ll_top" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -44,11 +45,12 @@
                 android:id="@+id/iv_Logo"
                 android:layout_width="@dimen/_60ssp"
                 android:layout_height="@dimen/_60ssp"
+                android:layout_alignParentRight="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_30ssp"
+                android:layout_marginRight="@dimen/_30ssp"
                 android:contentDescription="TODO"
-                android:src="@drawable/icon_main">
-            </com.pms.rcuapp.widget.CircularImageView>
+                android:src="@drawable/icon_main"></com.pms.rcuapp.widget.CircularImageView>
 
         </RelativeLayout>
 
@@ -60,7 +62,7 @@
             android:layout_marginEnd="@dimen/_16sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintTop_toBottomOf="@+id/ll_top">
 
             <com.pms.rcuapp.widget.HeaderText
@@ -255,6 +257,20 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_bottom"
+                android:adjustViewBounds="true">
+
+            </ImageView>
+
+        </RelativeLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
