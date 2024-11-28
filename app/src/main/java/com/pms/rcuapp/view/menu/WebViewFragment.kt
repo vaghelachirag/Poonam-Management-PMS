@@ -2,15 +2,23 @@ package com.pms.rcuapp.view.menu
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.DownloadManager
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Context.DOWNLOAD_SERVICE
 import android.content.Intent
+import android.content.IntentFilter
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.CookieManager
+import android.webkit.DownloadListener
+import android.webkit.URLUtil
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceError
@@ -23,6 +31,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.pms.rcuapp.R
@@ -151,6 +160,55 @@ class WebViewFragment: BaseFragment() {
                 return false
             }
         })
+
+        binding.webView.setDownloadListener { url, userAgent, contentDisposition, mimeType, contentLength ->
+            val request = DownloadManager.Request(Uri.parse(url))
+            request.setMimeType(mimeType)
+            request.addRequestHeader("cookie", CookieManager.getInstance().getCookie(url))
+            request.addRequestHeader("User-Agent", userAgent)
+            request.setDescription("Downloading file...")
+            request.setTitle(URLUtil.guessFileName(url, contentDisposition, mimeType))
+            request.allowScanningByMediaScanner()
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            request.setDestinationInExternalFilesDir(
+                requireActivity(),
+                Environment.DIRECTORY_DOWNLOADS,
+                ".png"
+            )
+            val dm = requireActivity().getSystemService(context.toString()) as DownloadManager
+            dm.enqueue(request)
+            Toast.makeText(requireActivity(), "Downloading File", Toast.LENGTH_LONG).show()
+        }
+
+        binding.webView.setDownloadListener(object : DownloadListener {
+            @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+            override fun onDownloadStart(url: String, userAgent: String, contentDisposition: String, mimetype: String, contentLength: Long) {
+                val request = DownloadManager.Request(Uri.parse(url))
+                request.setTitle(URLUtil.guessFileName(url, contentDisposition, mimetype))
+                request.setDescription("Downloading file...")
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                request.setDestinationInExternalPublicDir(
+                    Environment.DIRECTORY_DOWNLOADS,
+                    URLUtil.guessFileName(url, contentDisposition, mimetype)
+                )
+                val dm = requireActivity().getSystemService(DOWNLOAD_SERVICE) as DownloadManager?
+                dm!!.enqueue(request)
+                Toast.makeText(requireActivity().applicationContext, "Downloading...", Toast.LENGTH_SHORT).show()
+                requireActivity().registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE),
+                    Context.RECEIVER_NOT_EXPORTED)
+            }
+
+            var onComplete: BroadcastReceiver = object : BroadcastReceiver() {
+                override fun onReceive(context: Context?, intent: Intent?) {
+                    Toast.makeText(
+                        requireActivity().applicationContext,
+                        "Downloading Complete",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        })
+
 
         webViewViewModel.webViewURL.observeForever {
             if(it.isNotEmpty()){
