@@ -114,11 +114,7 @@ class WebViewFragment: BaseFragment() {
 
         // Enable file upload from the WebView
         binding.webView.webChromeClient = object : WebChromeClient() {
-            override fun onShowFileChooser(
-                webView: WebView?,
-                filePathCallback: ValueCallback<Array<Uri>>?,
-                fileChooserParams: FileChooserParams?
-            ): Boolean {
+            override fun onShowFileChooser(webView: WebView?, filePathCallback: ValueCallback<Array<Uri>>?, fileChooserParams: FileChooserParams?): Boolean {
                 fileUploadCallback = filePathCallback ?: return false
                 val intent = fileChooserParams?.createIntent()
                 fileUploadActivityResultLauncher.launch(intent)
