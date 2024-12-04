@@ -1,5 +1,6 @@
 package com.pms.rcuapp.view.menu
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DownloadManager
@@ -8,10 +9,13 @@ import android.content.Context
 import android.content.Context.DOWNLOAD_SERVICE
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.os.Parcelable
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -33,12 +37,19 @@ import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity.RESULT_OK
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.pms.rcuapp.R
 import com.pms.rcuapp.databinding.FragmentLoadWebUrlBinding
 import com.pms.rcuapp.view.base.BaseFragment
 import com.pms.rcuapp.viewmodel.WebViewViewModel
+import java.io.File
+import java.io.IOException
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.Date
 
 
 class WebViewFragment: BaseFragment() {
@@ -48,18 +59,13 @@ class WebViewFragment: BaseFragment() {
     private val webViewViewModel by lazy { WebViewViewModel(activity as Context) }
     var menuId: String = ""
 
-    private var fileUploadCallback: ValueCallback<Array<Uri>>? = null
+    private var mCM: String? = null
+    private var mUM: ValueCallback<Uri>? = null
+    private var mUMA: ValueCallback<Array<Uri>>? = null
+    private
+    val FCR: Int = 1
 
 
-    private val fileUploadActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val results = result.data?.let { WebChromeClient.FileChooserParams.parseResult(result.resultCode, it) }
-            fileUploadCallback?.onReceiveValue(results)
-        } else {
-            fileUploadCallback?.onReceiveValue(null)
-        }
-        fileUploadCallback = null
-    }
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -69,6 +75,22 @@ class WebViewFragment: BaseFragment() {
         menuId = requireArguments().getString("webURL").toString()
         context?.let { webViewViewModel.init(it,menuId) }
 
+        if (Build.VERSION.SDK_INT >= 23 && (ContextCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(
+                requireActivity(), Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED)
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf<String>(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA
+                ),
+                1
+            )
+        }
         val webSettings: WebSettings = binding.webView.getSettings()
         webSettings.javaScriptEnabled = true
         webSettings.javaScriptCanOpenWindowsAutomatically = true
@@ -76,10 +98,8 @@ class WebViewFragment: BaseFragment() {
         webSettings.allowFileAccess = true
         webSettings.builtInZoomControls = false
         webSettings.displayZoomControls = false
-
         webSettings.allowFileAccess = true;
         webSettings.allowContentAccess = true;
-
         webSettings.domStorageEnabled = true
 
         //        webSettings.setAppCacheEnabled(false);
@@ -90,57 +110,107 @@ class WebViewFragment: BaseFragment() {
         webSettings.mixedContentMode = 0;
         binding.webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
 
+        webSettings.mixedContentMode = 0
+        binding.webView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+        binding.webView.webViewClient = Callback()
+
         Log.e("MenuId",menuId)
 
-        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), callback)
 
         val callback = requireActivity().onBackPressedDispatcher.addCallback(requireActivity()) {
             findNavController().navigate(R.id.action_webViewFragment_to_dashboardMenuFragment)
         }
 
+        binding.webView.webChromeClient = object : WebChromeClient() {
+            //For Android 3.0+
+            fun openFileChooser(uploadMsg: ValueCallback<Uri>) {
+                mUM = uploadMsg
+                val i = Intent(Intent.ACTION_GET_CONTENT)
+                i.addCategory(Intent.CATEGORY_OPENABLE)
+                i.setType("*/*")
+               requireActivity().startActivityForResult(
+                    Intent.createChooser(i, "File Chooser"),
+                    FCR
+                )
+            }
+
+            //For Android 4.1+
+            fun openFileChooser(
+                uploadMsg: ValueCallback<Uri>,
+                acceptType: String?,
+                capture: String?
+            ) {
+                mUM = uploadMsg
+                val i = Intent(Intent.ACTION_GET_CONTENT)
+                i.addCategory(Intent.CATEGORY_OPENABLE)
+                i.setType("*/*")
+                requireActivity().startActivityForResult(
+                    Intent.createChooser(i, "File Chooser"),
+                    FCR
+                )
+            }
+
+            //For Android 5.0+
+            @SuppressLint("QueryPermissionsNeeded")
+            override fun onShowFileChooser(
+                webView: WebView, filePathCallback: ValueCallback<Array<Uri>>,
+                fileChooserParams: FileChooserParams
+            ): Boolean {
+                mUMA?.onReceiveValue(null)
+                mUMA = filePathCallback
+                var takePictureIntent: Intent? = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                if (takePictureIntent!!.resolveActivity(requireActivity().packageManager) != null) {
+                    var photoFile: File? = null
+                    try {
+                        photoFile = createImageFile()
+                        takePictureIntent.putExtra("PhotoPath", mCM)
+                    } catch (ex: IOException) {
+                        // Log.e(MainActivity.TAG, "Image file creation failed", ex)
+                    }
+                    if (photoFile != null) {
+                        mCM = "file:" + photoFile.absolutePath
+                        takePictureIntent.putExtra(
+                            MediaStore.EXTRA_OUTPUT,
+                            Uri.fromFile(photoFile)
+                        )
+                    } else {
+                        takePictureIntent = null
+                    }
+                }
+                val contentSelectionIntent = Intent(Intent.ACTION_GET_CONTENT)
+                contentSelectionIntent.addCategory(Intent.CATEGORY_OPENABLE)
+                contentSelectionIntent.setType("*/*")
+                val intentArray = if (takePictureIntent != null) {
+                    arrayOf<Intent?>(takePictureIntent)
+                } else {
+                    arrayOfNulls(0)
+                }
+
+                val chooserIntent = Intent(Intent.ACTION_CHOOSER)
+                chooserIntent.putExtra(Intent.EXTRA_INTENT, contentSelectionIntent)
+                chooserIntent.putExtra(Intent.EXTRA_TITLE, "Image Chooser")
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray)
+                startActivityForResult(chooserIntent, FCR)
+                return true
+            }
+        }
+
+        // Create an image file
+        @Throws(IOException::class)
+        fun createImageFiles(): File {
+            @SuppressLint("SimpleDateFormat") val timeStamp =
+                SimpleDateFormat("yyyyMMdd_HHmmss").format(
+                    Date()
+                )
+            val imageFileName = "img_" + timeStamp + "_"
+            val storageDir =
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            return File.createTempFile(imageFileName, ".jpg", storageDir)
+        }
+
         webViewViewModel.isLoading.observe(requireActivity()) { isLoading ->
             if (isLoading && isAdded) showProgressbar()
             else if (!isLoading && isAdded) hideProgressbar()
-        }
-
-        if(Build.VERSION.SDK_INT >= 21){
-            webSettings.setMixedContentMode(0);
-            binding.webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        }else if(Build.VERSION.SDK_INT >= 19){
-            binding.webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        }else if(Build.VERSION.SDK_INT < 19){
-            binding.webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        }
-
-        // Enable file upload from the WebView
-        binding.webView.webChromeClient = object : WebChromeClient() {
-            override fun onShowFileChooser(webView: WebView?, filePathCallback: ValueCallback<Array<Uri>>?, fileChooserParams: FileChooserParams?): Boolean {
-                fileUploadCallback = filePathCallback ?: return false
-                val intent = fileChooserParams?.createIntent()
-                fileUploadActivityResultLauncher.launch(intent)
-                return true
-            }
-        }
-
-        // Set up a WebViewClient to handle page navigation and downloads
-        binding.webView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                // Handle page navigation within the WebView
-                view?.loadUrl(request?.url.toString())
-                return true
-            }
-
-            override fun shouldInterceptRequest(view: WebView?, request: WebResourceRequest?): WebResourceResponse? {
-                // Handle downloads from the WebView
-                val url = request?.url.toString()
-                if (url?.endsWith(".jpg") == true || url?.endsWith(".png") == true || url?.endsWith(".gif") == true) {
-                    val connection = URL(url).openConnection()
-                    connection.connect()
-                    val inputStream = connection.inputStream
-                    return WebResourceResponse("image/*", "UTF-8", inputStream)
-                }
-                return super.shouldInterceptRequest(view, request)
-            }
         }
 
         binding.webView.setWebViewClient(object : WebViewClient() {
@@ -157,7 +227,21 @@ class WebViewFragment: BaseFragment() {
             }
         })
 
-        binding.webView.setDownloadListener { url, userAgent, contentDisposition, mimeType, contentLength ->
+
+        // Create an image file
+        @Throws(IOException::class)
+        fun createImageFile(): File {
+            @SuppressLint("SimpleDateFormat") val timeStamp =
+                SimpleDateFormat("yyyyMMdd_HHmmss").format(
+                    Date()
+                )
+            val imageFileName = "img_" + timeStamp + "_"
+            val storageDir =
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            return File.createTempFile(imageFileName, ".jpg", storageDir)
+        }
+
+        binding.webView.setDownloadListener { url, userAgent, contentDisposition, mimeType, _ ->
             val request = DownloadManager.Request(Uri.parse(url))
             request.setMimeType(mimeType)
             request.addRequestHeader("cookie", CookieManager.getInstance().getCookie(url))
@@ -242,9 +326,49 @@ class WebViewFragment: BaseFragment() {
 
                 binding.webView.loadUrl(webViewViewModel.webViewURL.value.toString())
             }
+
+
+            // Create an image file
+            @Throws(IOException::class)
+            fun createImageFiles(): File {
+                @SuppressLint("SimpleDateFormat") val timeStamp =
+                    SimpleDateFormat("yyyyMMdd_HHmmss").format(
+                        Date()
+                    )
+                val imageFileName = "img_" + timeStamp + "_"
+                val storageDir =
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                return File.createTempFile(imageFileName, ".jpg", storageDir)
+            }
+
         }
 
         return binding.root
+    }
+
+    class Callback : WebViewClient() {
+        @Deprecated("Deprecated in Java")
+        override fun onReceivedError(
+            view: WebView,
+            errorCode: Int,
+            description: String,
+            failingUrl: String
+        ) {
+
+        }
+    }
+
+    // Create an image file
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        @SuppressLint("SimpleDateFormat") val timeStamp =
+            SimpleDateFormat("yyyyMMdd_HHmmss").format(
+                Date()
+            )
+        val imageFileName = "img_" + timeStamp + "_"
+        val storageDir =
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(imageFileName, ".jpg", storageDir)
     }
 
     override fun onResume() {
@@ -254,10 +378,32 @@ class WebViewFragment: BaseFragment() {
         (activity as AppCompatActivity?)!!.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_nav_menup)
     }
 
-    val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-             Log.e("OnBack","OnBack")
-
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intent)
+        var results: Array<Uri>? = null
+        //Check if response is positive
+        if (resultCode == RESULT_OK) {
+            if (requestCode == FCR) {
+                if (null == mUMA) {
+                    return
+                }
+                if (intent == null) {
+                    //Capture Photo if no image available
+                    if (mCM != null) {
+                        results = arrayOf(Uri.parse(mCM))
+                    }
+                } else {
+                    val dataString = intent.dataString
+                    if (dataString != null) {
+                        results = arrayOf(Uri.parse(dataString))
+                    }
+                }
             }
         }
+        mUMA!!.onReceiveValue(results)
+        mUMA = null
+    }
+
+
 }

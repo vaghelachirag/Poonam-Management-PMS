@@ -168,7 +168,7 @@ class DashboardActivity : BaseActivity(){
 
 
         Dexter.withActivity(this)
-            .withPermissions(Manifest.permission.ACCESS_FINE_LOCATION)
+            .withPermissions(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .withListener(object : MultiplePermissionsListener {
                 override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                     if (getLocationMode() == 3) {
