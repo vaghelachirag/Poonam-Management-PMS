@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id ("com.google.gms.google-services")
+    id ("com.google.firebase.crashlytics")
 }
 
 android {
@@ -106,4 +107,7 @@ dependencies {
 
     implementation("id.zelory:compressor:3.0.1")
 
+
+    implementation ("com.google.firebase:firebase-crashlytics:18.3.7")
+    implementation ("com.google.firebase:firebase-analytics:21.2.2")
 }

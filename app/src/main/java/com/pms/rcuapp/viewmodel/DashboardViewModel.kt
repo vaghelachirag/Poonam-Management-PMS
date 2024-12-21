@@ -29,7 +29,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class DashboardViewModel(val context: Context, val dashboardFragment: DashboardFragment, val binding: DashboardFragmentBinding) : BaseViewModel(){
+class DashboardViewModel(@SuppressLint("StaticFieldLeak") val context: Context, val dashboardFragment: DashboardFragment, val binding: DashboardFragmentBinding) : BaseViewModel(){
 
     var verificationList: ArrayList<GetPendingRequestData> = ArrayList()
     private var dashboardAdapter: DashboardAdapter? = null
@@ -43,7 +43,7 @@ class DashboardViewModel(val context: Context, val dashboardFragment: DashboardF
     // Session Manager
     var session = Session(context)
 
-    var rcuType = ""
+    private var rcuType = ""
 
     fun init(context: Context) {
         totalVerification.value = 0
@@ -86,6 +86,7 @@ class DashboardViewModel(val context: Context, val dashboardFragment: DashboardF
                                 setVerificationAdapter()
                                 if (session.getIsFirstTimeKey()){
                                     CoroutineScope(Dispatchers.IO).launch {
+
                                         if (masterDataDao!!.getMasterDataList().size > 0){
                                             Log.e("Master",masterDataDao!!.getMasterDataList().size.toString())
                                         }
@@ -105,7 +106,6 @@ class DashboardViewModel(val context: Context, val dashboardFragment: DashboardF
 
                 })
         }else{
-
             isLoading.postValue(false)
             Utils().showToast(context,context.getString(R.string.nointernetconnection).toString())
         }
