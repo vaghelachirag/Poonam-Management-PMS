@@ -17,6 +17,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+        val nullString: String? = null
+        println(nullString.toString())
+
+        Log.e("Data",nullString.toString())
         FirebaseApp.initializeApp(this)
         FirebaseCrashlytics.getInstance().setUserId("14")
 
@@ -27,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
 
         Log.e("Token",getSharedPreferences("_", MODE_PRIVATE).getString("fb","").toString())
-
 
     }
 
